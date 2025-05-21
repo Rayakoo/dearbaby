@@ -2,102 +2,136 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <div className="flex flex-col gap-16 w-full items-center bg-white pb-20">
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+            {/* Section 3: Hero & Info */}
+      <section className="w-full">
+        {/* Hero */}
+        <div className="bg-[#4B2ED5] w-full py-32 px-4 flex flex-col md:flex-row items-center justify-between relative overflow-hidden">
+          <div className="z-10 flex-1">
+            <h1 className="text-white text-3xl md:text-5xl font-bold mb-4">
+              Ambil langkah untuk melindungi si kecil
+            </h1>
+            <p className="text-white text-lg mb-6">
+              Temani setiap detik perjalananmu menanti si kecil dengan penuh cinta!
+            </p>
+            <button className="bg-white text-[#4B2ED5] font-semibold px-6 py-3 rounded-lg shadow">
+              Coba DearBaby
+            </button>
+          </div>
+          <div className="z-10 flex-1 flex justify-end">
+            <Image src="/img/hero-couple.png" alt="Couple" width={180} height={220} className="hidden md:block" />
+          </div>
+          {/* Optional: background wave/shape */}
+          <div className="absolute inset-0 pointer-events-none">
+            {/* You can add SVG or background shapes here if needed */}
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+        {/* Info */}
+        <div className="flex flex-col md:flex-row items-center justify-center gap-8 py-44 px-4">
+          <Image src="/img/baby.png" alt="Baby" width={180} height={180} className="mb-4 md:mb-0" />
+          <div>
+            <h2 className="text-3xl md:text-4xl font-bold text-[#4B2ED5] mb-2">
+              Detik ke detik, Si <span className="relative inline-block">
+                Kecil bertumbuh
+                <span className="absolute left-0 bottom-0 w-full h-2 bg-[#FFD600] opacity-60 -z-10" style={{height: "0.6em"}}></span>
+              </span>
+            </h2>
+            <p className="text-gray-700 text-lg">
+              pantau perkembangannya dan persiapkan dengan penuh kasih sayang
+            </p>
+          </div>
+        </div>
+      </section>
+  
+
+      {/* Section 2: Artikel */}
+      <section className="w-full max-w-3xl mx-auto">
+        <div className="rounded-full border border-[#7C3AED] px-6 py-2 text-[#4B2ED5] font-semibold text-xl shadow mb-8 w-fit mx-auto">
+          Artikel Tentang Ibu hamil
+        </div>
+        <div className="flex flex-col gap-6">
+          {/* Artikel 1 */}
+          <div className="flex items-center bg-[#7C3AED] rounded-2xl shadow-lg p-4 gap-6">
+            <Image src="/img/artikel1.jpg" alt="Artikel 1" width={90} height={90} className="rounded-lg object-cover w-[90px] h-[90px]" />
+            <div className="text-white">
+              <div className="text-sm opacity-80 mb-1">Fertilitas</div>
+              <div className="text-xl font-semibold leading-snug">10 Tanda Awal Kehamilan yang Perlu Diketahui</div>
+            </div>
+          </div>
+          {/* Artikel 2 */}
+          <div className="flex items-center bg-[#7C3AED] rounded-2xl shadow-lg p-4 gap-6">
+            <Image src="/img/artikel2.jpg" alt="Artikel 2" width={90} height={90} className="rounded-lg object-cover w-[90px] h-[90px]" />
+            <div className="text-white">
+              <div className="text-sm opacity-80 mb-1">Parenting</div>
+              <div className="text-xl font-semibold leading-snug">Panduan Lengkap Nutrisi untuk Ibu Hamil</div>
+            </div>
+          </div>
+        </div>
+      </section>
+    {/* Section 1: Testimoni */}
+      <section className="w-full max-w-5xl mx-auto mt-12">
+        <h2 className="text-center text-4xl font-bold mb-10 text-[#4B2ED5]">
+          Kata Bunda soal <span className="text-[#FFD600] underline decoration-[#FFD600] decoration-wavy">DearBaby</span>
+        </h2>
+        <div className="flex flex-col md:flex-row gap-6 justify-center items-stretch">
+          {/* Card 1 */}
+          <div className="bg-white rounded-2xl shadow-lg p-8 flex-1 flex flex-col justify-between min-w-[300px] max-w-[350px]">
+            <div>
+              <div className="text-5xl text-[#7C3AED] mb-4">“</div>
+              <p className="text-gray-700 mb-8">
+                Whitepate is designed as a collaboration tool for businesses that is a full project management solution.
+              </p>
+            </div>
+            <div className="flex items-center gap-4 mt-auto">
+              <Image src="/img/testi1.jpg" alt="Oberon Shaw" width={48} height={48} className="rounded-full object-cover" />
+              <div>
+                <div className="font-bold text-gray-900">Oberon Shaw, MCH</div>
+                <div className="text-xs text-gray-500">Head of Talent Acquisition, North America</div>
+              </div>
+            </div>
+          </div>
+          {/* Card 2 */}
+          <div className="bg-[#7C3AED] rounded-2xl shadow-lg p-8 flex-1 flex flex-col justify-between min-w-[300px] max-w-[350px] text-white">
+            <div>
+              <div className="text-5xl mb-4">“</div>
+              <p className="mb-8">
+                Whitepate is designed as a collaboration tool for businesses that is a full project management solution.
+              </p>
+            </div>
+            <div className="flex items-center gap-4 mt-auto">
+              <Image src="/img/testi2.jpg" alt="Oberon Shaw" width={48} height={48} className="rounded-full object-cover" />
+              <div>
+                <div className="font-bold">Oberon Shaw, MCH</div>
+                <div className="text-xs">Head of Talent Acquisition, North America</div>
+              </div>
+            </div>
+          </div>
+          {/* Card 3 */}
+          <div className="bg-[#7C3AED] rounded-2xl shadow-lg p-8 flex-1 flex flex-col justify-between min-w-[300px] max-w-[350px] text-white">
+            <div>
+              <div className="text-5xl mb-4">“</div>
+              <p className="mb-8">
+                Whitepate is designed as a collaboration tool for businesses that is a full project management solution.
+              </p>
+            </div>
+            <div className="flex items-center gap-4 mt-auto">
+              <Image src="/img/testi3.jpg" alt="Oberon Shaw" width={48} height={48} className="rounded-full object-cover" />
+              <div>
+                <div className="font-bold">Oberon Shaw, MCH</div>
+                <div className="text-xs">Head of Talent Acquisition, North America</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {/* Dots */}
+        <div className="flex justify-center mt-6 gap-2">
+          <span className="w-3 h-3 rounded-full bg-[#4B2ED5]"></span>
+          <span className="w-3 h-3 rounded-full bg-[#D1C4E9]"></span>
+          <span className="w-3 h-3 rounded-full bg-[#D1C4E9]"></span>
+        </div>
+      </section>
+
     </div>
   );
 }
