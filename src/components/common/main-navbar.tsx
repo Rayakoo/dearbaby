@@ -22,7 +22,7 @@ export default function Navbar() {
           <div className="flex-grow"></div>
           {/* Desktop Menu */}
           <div className="hidden md:flex space-x-8 justify-end flex-grow max-w-[400px]">
-            <Link href="/home" className={`text-purple-700 hover:text-pink-600 px-1 py-2 text-sm font-medium ${activeRoute === "/home" ? "text-pink-600 border-b-2 border-pink-600" : ""}`}>
+            <Link href="/" className={`text-purple-700 hover:text-pink-600 px-1 py-2 text-sm font-medium ${activeRoute === "/home" ? "text-pink-600 border-b-2 border-pink-600" : ""}`}>
               Homepage
             </Link>
             <Link href="/diary" className={`text-purple-700 hover:text-pink-600 px-1 py-2 text-sm font-medium ${activeRoute === "/home" ? "text-pink-600 border-b-2 border-pink-600" : ""}`}>
@@ -34,7 +34,7 @@ export default function Navbar() {
             <Link href="/gejala" className={`text-purple-700 hover:text-pink-600 px-1 py-2 text-sm font-medium ${activeRoute === "/home" ? "text-pink-600 border-b-2 border-pink-600" : ""}`}>
               Gejala
             </Link>
-            <Link href="/about" className={`text-purple-700 hover:text-pink-600 px-1 py-2 text-sm font-medium ${activeRoute === "/home" ? "text-pink-600 border-b-2 border-pink-600" : ""}`}>
+            <Link href="/beranda" className={`text-purple-700 hover:text-pink-600 px-1 py-2 text-sm font-medium ${activeRoute === "/home" ? "text-pink-600 border-b-2 border-pink-600" : ""}`}>
               About Us
             </Link>
             <Link href="/bu-clara" className={`text-purple-700 hover:text-pink-600 px-1 py-2 text-sm font-medium ${activeRoute === "/home" ? "text-pink-600 border-b-2 border-pink-600" : ""}`}>
