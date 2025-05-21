@@ -86,10 +86,10 @@ export default function InputMood() {
         />
         <button onClick={handleSubmit} className="ml-2">
           <Image 
-            src="/emoticon/kirim.png"
+            src="/kirim.png"
             alt="Kirim"
-            width={32}
-            height={32}
+            width={20}
+            height={15}
           />
         </button>
       </div>
