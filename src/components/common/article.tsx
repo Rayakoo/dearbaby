@@ -2,7 +2,7 @@ import Image from "next/image";
 import React from "react";
 
 const Article = () => (
-  <section className="w-full max-w-3xl mx-auto">
+  <section className="w-full max-w-4xl mx-auto px-10 py-8">
     <div className="rounded-full border border-[#7C3AED] px-6 py-2 text-[#4B2ED5] font-semibold text-xl shadow mb-8 w-fit mx-auto">
       Artikel Tentang Ibu hamil
     </div>

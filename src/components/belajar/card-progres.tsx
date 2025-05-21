@@ -5,7 +5,7 @@ const progress = 34; // dummy data (percent)
 
 const CardProgres = () => {
   return (
-    <div className="bg-white rounded-2xl shadow-lg p-6 max-w-xl mx-auto mt-4">
+    <div className="bg-white rounded-2xl shadow-lg w-full max-w-4xl mx-auto px-10 py-8 mt-4">
       {/* Card */}
       <div className="bg-white rounded-2xl shadow flex flex-col px-6 py-4 mb-8">
         <span className="text-sm text-[#7C3AED] font-semibold mb-1">Kemajuan Belajar</span>
