@@ -48,7 +48,8 @@
     "Tanggal": "2025-04-29",
     "MoodCheck": 3,
     "Pesan": "Biasa saja, tapi tetap produktif."
-  },{
+  },
+  {
     "Tanggal": "2025-04-30",
     "MoodCheck": 3,
     "Pesan": "Hampir akhir bulan, mulai mengevaluasi pencapaian."
@@ -157,5 +158,10 @@
     "Tanggal": "2025-05-21",
     "MoodCheck": 3,
     "Pesan": "hahahah"
+  },
+  {
+    "Tanggal": "2025-05-22",
+    "MoodCheck": 5,
+    "Pesan": "tolol"
   }
 ]

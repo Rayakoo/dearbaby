@@ -10,7 +10,7 @@ import Navbar from "@/components/common/main-navbar";
 export default function beranda() {
   const data = "";
   return (
-    <div className="bg-[#FAEFFF] ">
+    <div className="bg-[#FAEFFF] p-5 ">
       <Navbar/>
       <br />
       <div className="flex flex-col items-center justify-center gap-8">
