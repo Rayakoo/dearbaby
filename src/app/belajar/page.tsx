@@ -1,3 +1,4 @@
+
 import Article from "@/components/common/article";
 import Navbar from "@/components/common/main-navbar";
 import Footer from "@/components/common/main-footer";
@@ -8,11 +9,18 @@ export default function belajar() {
   const data = "";
   return (
     <div className="bg-[#FAEFFF]">
+        
       <Navbar />
+      <br />
+       <div className="col items-center justify-center ">
       <CardProgres />
+     
       <CardQuiz />
+      <br />
       <Article/>
+      <br />
       <Footer/>
+      </div>
     </div>
   );
 }
