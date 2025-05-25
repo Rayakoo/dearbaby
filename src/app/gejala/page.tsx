@@ -27,15 +27,18 @@ export default function Gejala() {
         </div>
       </section>
 
-      {/* Gejala ringan section */}
-      <section className="w-full max-w-4xl mx-auto px-4 mb-8">
-        <div className="bg-purple-100 rounded-xl p-6 border border-purple-200">
-          <h3 className="text-xl font-bold text-purple-700 mb-2">
-            Gejala ringan
+     {/* Gejala ringan section */}
+     <section className="w-full max-w-4xl mx-auto px-4 mb-8">
+      <div className="bg-white rounded-2xl shadow-md p-6">
+        <h3 className="text-xl font-bold text-purple-700 mb-4">
+          Gejala ringan
           </h3>
-          <p className="text-purple-600">Cukup sering terjadi</p>
-        </div>
-      </section>
+          <div className="bg-purple-300 text-gray-700 rounded-lg py-2 px-4 w-full">
+            Cukup sering terjadi
+            </div>
+          </div>
+            </section>
+
 
       {/* Symptom list */}
       <section className="w-full max-w-4xl mx-auto px-4">
