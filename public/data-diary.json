@@ -1,17 +1,17 @@
 [
   {
     "Tanggal": "2025-04-20",
-    "MoodCheck": 5,
+    "MoodCheck": 3,
     "Pesan": "Hari pertama eksperimen mood tracking! Semoga bermanfaat."
   },
   {
     "Tanggal": "2025-04-21",
-    "MoodCheck": 2,
+    "MoodCheck": 3,
     "Pesan": "Sedikit lesu hari ini, mungkin kurang tidur."
   },
   {
     "Tanggal": "2025-04-22",
-    "MoodCheck": 6,
+    "MoodCheck": 3,
     "Pesan": "Sangat bersemangat! Banyak ide baru muncul."
   },
   {
@@ -21,7 +21,7 @@
   },
   {
     "Tanggal": "2025-04-24",
-    "MoodCheck": 1,
+    "MoodCheck": 3,
     "Pesan": "Hari ini cukup berat, butuh hiburan!"
   },
   {
@@ -160,8 +160,13 @@
     "Pesan": "hahahah"
   },
   {
-    "Tanggal": "2025-05-22",
-    "MoodCheck": 5,
-    "Pesan": "tolol"
+    "Tanggal": "2025-05-24",
+    "MoodCheck": 6,
+    "Pesan": "k"
+  },
+  {
+    "Tanggal": "2025-05-25",
+    "MoodCheck": 1,
+    "Pesan": "lagi jatuh cinta"
   }
 ]

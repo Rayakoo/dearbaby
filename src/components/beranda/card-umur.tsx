@@ -9,7 +9,7 @@ const trimester = 3;
 const trimesterImages: Record<number, string> = {
   1: "/img/trimester1.png",
   2: "/img/trimester2.png",
-  3: "/img/trimester3.png",
+  3: "/janin.png",
   4: "/img/trimester4.png",
 };
 

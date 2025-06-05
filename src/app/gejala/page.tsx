@@ -1,12 +1,13 @@
+import Footer from "@/components/common/main-footer";
 import Navbar from "@/components/common/main-navbar";
 import Image from "next/image";
 
 export default function Gejala() {
   
   return (
-    <div className="flex flex-col items-center bg-white pb-20 p-5">
+    <div className=" bg-[#FAEFFF]">
     <Navbar></Navbar>
-
+    <div className="col items-center justify-center">
       {/* Daftar gejala kehamilan section */}
       <section className="w-full max-w-4xl mx-auto mt-12 px-4">
         <div className="bg-white rounded-xl shadow-lg p-6 mb-8 border border-gray-200">
@@ -102,6 +103,10 @@ export default function Gejala() {
           </div>
         </div>
       </section>
+      <br className="p-5"/>
+      <Footer></Footer>
+      
+    </div>
     </div>
   );
 }
