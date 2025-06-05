@@ -9,6 +9,9 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
 
+  // Dummy login state, ganti dengan state/auth context sesuai kebutuhan
+  const isLoggedIn = false;
+
   // Menu config
   const menus = [
     { label: "Homepage", href: "/", match: ["/", "/home"] },
@@ -18,13 +21,15 @@ export default function Navbar() {
     { label: "Beranda", href: "/beranda", match: ["/beranda"] },
   ];
 
+  const isProfileActive = pathname === "/profile";
+
   return (
-    <nav className="bg-white shadow-lg w-full">
+    <nav className="bg-white shadow-lg w-full sticky top-0 z-50">
       <div className="container mx-auto px-1 py-3">
         <div className="flex items-center justify-start">
           {/* Logo */}
           <div className="flex-shrink-0 flex items-center">
-            <Image src="/images/logo.png" width={48} height={48} alt="Logo" className="w-12 h-12" />
+            <Image src="/logo.png" width={48} height={48} alt="Logo" className="w-12 h-12" />
             <span className="ml-2 font-bold text-2xl text-[#5F22D9]">
               Dear<span className="text-[#D1C4E9]">baby</span>
             </span>
@@ -50,29 +55,47 @@ export default function Navbar() {
               );
             })}
             {/* Bu Clara Button */}
-            <Link href="/profile">
-              <button className="ml-2 bg-[#5F22D9] hover:bg-[#7C3AED] text-white font-semibold px-6 py-2 rounded-lg transition">
-                Bu Clara
-              </button>
-            </Link>
-            {/* Profile Image */}
-            <Link href="/profile">
-              <Image
-                src="/img/profile.jpg"
-                alt="Profile"
-                width={40}
-                height={40}
-                className="ml-3 rounded-full object-cover border-2 border-[#EDE7F6] w-10 h-10"
-              />
-            </Link>
+            {isLoggedIn ? (
+              <Link href="/profile">
+                <button
+                  className={`ml-2 px-8 py-2 rounded-lg font-semibold transition
+                    ${isProfileActive
+                      ? "bg-[#FF1FE1] text-white border-b-2 border-pink-500"
+                      : "bg-[#5F22D9] hover:bg-[#7C3AED] text-white"}
+                  `}
+                  style={{ minWidth: 120 }}
+                >
+                  Bu Clara
+                </button>
+              </Link>
+            ) : null}
+            {/* Profile Image or Login */}
+            {isLoggedIn ? (
+              <Link href="/profile">
+                <Image
+                  src="/img/profile.jpg"
+                  alt="Profile"
+                  width={40}
+                  height={40}
+                  className={`ml-3 rounded-full object-cover border-2 w-10 h-10
+                    ${isProfileActive ? "border-pink-500" : "border-[#EDE7F6]"}
+                  `}
+                />
+              </Link>
+            ) : (
+              <Link href="/login">
+                <button className="ml-3 bg-purple-700 hover:bg-pink-500 text-white font-semibold px-6 py-2 rounded-lg transition">
+                  Masuk
+                </button>
+              </Link>
+            )}
           </div>
           {/* Mobile Menu Button */}
           <button className="md:hidden focus:outline-none ml-2" onClick={() => setIsOpen(!isOpen)} id="mobile-menu-button">
-  <svg className="w-6 h-6 text-purple-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-  </svg>
-</button>
-
+            <svg className="w-6 h-6 text-purple-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
         </div>
         {/* Mobile Menu */}
         <div className={`md:hidden mt-4 ${isOpen ? "" : "hidden"}`} id="mobile-menu">
@@ -93,20 +116,38 @@ export default function Navbar() {
                 </Link>
               );
             })}
-            <Link href="/profile">
-              <button className="mt-2 bg-[#5F22D9] hover:bg-[#7C3AED] text-white font-semibold px-6 py-2 rounded-lg transition w-full text-left">
-                Bu Clara
-              </button>
-            </Link>
-            <Link href="/profile" className="flex items-center mt-2">
-              <Image
-                src="/img/profile.jpg"
-                alt="Profile"
-                width={40}
-                height={40}
-                className="rounded-full object-cover border-2 border-[#EDE7F6] w-10 h-10"
-              />
-            </Link>
+            {isLoggedIn ? (
+              <>
+                <Link href="/profile">
+                  <button
+                    className={`mt-2 px-8 py-2 rounded-lg font-semibold w-full text-left transition
+                      ${isProfileActive
+                        ? "bg-[#FF1FE1] text-white border-b-2 border-pink-500"
+                        : "bg-[#5F22D9] hover:bg-[#7C3AED] text-white"}
+                    `}
+                  >
+                    Bu Clara
+                  </button>
+                </Link>
+                <Link href="/profile" className="flex items-center mt-2">
+                  <Image
+                    src="/img/profile.jpg"
+                    alt="Profile"
+                    width={40}
+                    height={40}
+                    className={`rounded-full object-cover border-2 w-10 h-10
+                      ${isProfileActive ? "border-pink-500" : "border-[#EDE7F6]"}
+                    `}
+                  />
+                </Link>
+              </>
+            ) : (
+              <Link href="/login">
+                <button className="mt-2 bg-[#FF1FE1] hover:bg-pink-500 text-white font-semibold px-6 py-2 rounded-lg transition w-full text-left">
+                  Masuk
+                </button>
+              </Link>
+            )}
           </div>
         </div>
       </div>

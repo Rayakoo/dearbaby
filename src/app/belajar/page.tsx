@@ -8,7 +8,7 @@ import CardQuiz from "@/components/belajar/card-quiz";
 export default function belajar() {
   const data = "";
   return (
-    <div className="bg-[#FAEFFF] p-5">
+    <div className="bg-[#FAEFFF] ">
         
       <Navbar />
       <br />

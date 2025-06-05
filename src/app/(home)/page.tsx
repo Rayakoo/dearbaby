@@ -9,7 +9,7 @@ import HomeTesti from "@/components/home/home-testi";
 export default function Home() {
   const data = "";
   return (
-    <div className="bg-white p-5">
+    <div className="bg-white">
       <Navbar />
       <br />
        <div className="col items-center justify-center ">

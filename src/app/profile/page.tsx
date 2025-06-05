@@ -6,20 +6,18 @@ import BtnMood from "@/components/beranda/btn-mood";
 import CardUmur from "@/components/beranda/card-umur";
 import Footer from "@/components/common/main-footer";
 import Navbar from "@/components/common/main-navbar";
+import ProfileCard from "@/components/profile/profile-card";
 
-export default function beranda() {
+export default function profile() {
   const data = "";
   return (
     <div className="bg-[#FAEFFF]  ">
       <Navbar/>
       <br />
       <div className="flex flex-col items-center justify-center gap-8">
-        
-      <CardUmur/>
-      <BtnMood/>
-      <BtnGejala/>
-      <BtnFasKes/>
-      <CardQuiz/>
+    <ProfileCard/>
+      
+      
       
       </div>
       <br />
