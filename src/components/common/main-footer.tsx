@@ -13,15 +13,16 @@ const Footer = () => (
       {/* Logo & Description */}
       <div style={{ flex: "1 1 320px", minWidth: 260 }}>
         <div style={{ display: "flex", alignItems: "center", marginBottom: 12 }}>
-          <img
-            src="PATH_TO_LOGO"
+          {/* <img
+            src="logo.png"
             alt="Dearbaby Logo"
             style={{ width: 48, height: 48, marginRight: 12 }}
-          />
+            
+          /> */}
           <span style={{
             fontWeight: 700,
             fontSize: 28,
-            color: "#B39DDB"
+            color: "#FAEFFF"
           }}>Dearbaby</span>
         </div>
         <div style={{ color: "#EDE7F6", fontSize: 16, lineHeight: "1.6" }}>
