@@ -1,13 +1,19 @@
 "use client";
 
-import MoodChart from "./moodChart";
-import MoodDisplay from "./moodDisplay";
-import MoodCalendar from "./moodCalendar";
-import InputMood from "./inputMood";
+import MoodChart from "../../components/diary/moodChart";
+import MoodDisplay from "../../components/diary/moodDisplay";
+import MoodCalendar from "../../components/diary/moodCalendar";
+import InputMood from "../../components/diary/inputMood";
+import Navbar from "@/components/common/main-navbar";
+import Footer from "@/components/common/main-footer";
 
 export default function DiaryPage() {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-white p-5">
+    <div className="bg-[#FAEFFF] ">
+      <Navbar></Navbar>
+    <div className="col items-center justify-center">
+    
+
       {/* Widget InputMood */}
       <InputMood/>
 
@@ -19,6 +25,9 @@ export default function DiaryPage() {
 
       {/* Widget MoodDisplay */}
       <MoodDisplay />
+
+      <Footer />
+    </div>
     </div>
   );
 }

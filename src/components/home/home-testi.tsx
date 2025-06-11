@@ -61,12 +61,12 @@ const HomeTesti = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Auto slide
+  // Auto slide (urut satu per satu)
   useEffect(() => {
     if (intervalRef.current) clearInterval(intervalRef.current);
     intervalRef.current = setInterval(() => {
       setCurrent((prev) =>
-        (prev + cardsPerView) % testimonials.length
+        (prev + 1) % testimonials.length
       );
     }, 3000);
     return () => {
@@ -74,7 +74,7 @@ const HomeTesti = () => {
     };
   }, [cardsPerView]);
 
-  // Calculate visible cards
+  // Calculate visible cards (urut)
   const visibleCards = [];
   for (let i = 0; i < cardsPerView; i++) {
     const idx = (current + i) % testimonials.length;
@@ -88,14 +88,14 @@ const HomeTesti = () => {
   return (
     <section className="w-full max-w-5xl mx-auto mt-12">
       <h2 className="text-center text-4xl font-bold mb-10 text-[#4B2ED5]">
-        Kata Bunda soal <span className="text-[#FFD600] underline decoration-[#FFD600] decoration-wavy">DearBaby</span>
+        Kata Bunda soal <span className="text-[#FFD600]  ">DearBaby</span>
       </h2>
       <div className="overflow-hidden">
-        <div className="flex transition-all duration-500 ease-in-out gap-6">
+        <div className="flex transition-all duration-500 ease-in-out gap-6 sm:justify-start justify-center">
           {visibleCards.map((t, i) => (
             <div
               key={i}
-              className="bg-white rounded-2xl shadow-lg p-8 flex-1 flex flex-col justify-between min-w-[300px] max-w-[350px] text-[#222] transition-all"
+              className="bg-white rounded-2xl shadow-lg p-8 flex-1 flex flex-col justify-between min-w-[300px] max-w-[350px] text-[#222] transition-all mx-auto"
               style={{
                 background: i % 2 === 1 ? "#7C3AED" : "#fff",
                 color: i % 2 === 1 ? "#fff" : "#222",
