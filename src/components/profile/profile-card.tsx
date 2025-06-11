@@ -20,7 +20,9 @@ const ProfileCard = () => (
         <div className="text-gray-500 text-sm mb-4">alexarawles@gmail.com</div>
       </div>
       <div className="w-full md:w-1/2 flex justify-end mt-4 md:mt-0">
-        <button className="bg-[#5F22D9] hover:bg-pink-500 text-white font-semibold px-6 py-2 rounded-lg transition">
+
+        <button className="bg-[#5F22D9] hover:bg-[#4B2ED5] text-white font-semibold px-6 py-2 rounded-lg transition">
+
           Edit
         </button>
       </div>

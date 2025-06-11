@@ -1,5 +1,6 @@
 import Footer from "@/components/common/main-footer";
 import Navbar from "@/components/common/main-navbar";
+
 import CardGejala from "@/components/gejala/card-gejala";
 
 export default function Gejala() {
@@ -61,3 +62,4 @@ export default function Gejala() {
     </div>
   );
 }
+

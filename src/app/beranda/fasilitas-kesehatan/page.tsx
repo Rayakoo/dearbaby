@@ -1,4 +1,3 @@
-
 import Footer from "@/components/common/main-footer";
 import Navbar from "@/components/common/main-navbar";
 import CardRS from "@/components/fasilitaskesehatan/card-fasilitas";
@@ -69,6 +68,7 @@ export default function Rekomendasi() {
     </main>
     <Footer/>
     </div>
+
 
     );
 }

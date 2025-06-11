@@ -1,16 +1,35 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import Cookies from "js-cookie";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
 
+
+  //cookies
+  const [username, setUsername] = useState<string | null>(null);
+  const [isLoggedIn, setToken] = useState<string | null>(null);
+
+  // Mengambil token dan username setelah login
+  useEffect(() => {
+    const storedToken = Cookies.get("api_token") || sessionStorage.getItem("api_token");
+    const storedUsername = Cookies.get("username");
+
+    setToken(storedToken);
+    setUsername(storedUsername ?? null);
+
+    console.log("Token:", storedToken);
+    console.log("Username:", storedUsername);
+  }, []);
+
   // Dummy login state, ganti dengan state/auth context sesuai kebutuhan
-  const isLoggedIn = true;
+  //const isLoggedIn = false;
+
 
   // Menu config
   const menus = [
@@ -66,7 +85,9 @@ export default function Navbar() {
                   `}
                   style={{ minWidth: 120 }}
                 >
-                  Bu Clara
+
+                  {username}
+
                 </button>
               </Link>
             ) : null}
@@ -84,7 +105,9 @@ export default function Navbar() {
                 />
               </Link>
             ) : (
-              <Link href="/login">
+
+              <Link href="/auth/login">
+
                 <button className="ml-3 bg-purple-700 hover:bg-pink-500 text-white font-semibold px-6 py-2 rounded-lg transition">
                   Masuk
                 </button>
