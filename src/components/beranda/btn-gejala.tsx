@@ -1,5 +1,4 @@
 import Link from "next/link";
-import React from "react";
 
 const BtnGejala = () => (
   <div className="bg-white rounded-2xl shadow-lg p-6 items-center  max-w-3xl mx-auto mt-4 px-10 py-8 w-full">
