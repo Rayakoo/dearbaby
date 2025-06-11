@@ -1,3 +1,4 @@
+
 import Footer from "@/components/common/main-footer";
 import Navbar from "@/components/common/main-navbar";
 import CardRS from "@/components/fasilitaskesehatan/card-fasilitas";
@@ -25,6 +26,7 @@ export default function Rekomendasi() {
         </div>
         </div>
         <div className="flex flex-col gap-6">
+
 
         <CardRS
         imageSrc="/img/RSUDSaifulAnwar.jpg"
@@ -62,9 +64,11 @@ export default function Rekomendasi() {
         rating={4}
         />
         </div>
+
         </section>
     </main>
     <Footer/>
     </div>
+
     );
 }
