@@ -1,8 +1,10 @@
+import Navbar from "@/components/common/main-navbar";
 import Image from "next/image";
 
 export default function Rekomendasi() {
     return (
-        
+         <div className="bg-[#FAEFFF]  ">
+              <Navbar/>
         <div className="flex flex-col items-center bg-white pb-20">
             {/* Daftar rekomendasi fasilitas kesehatan */}
             <section className="w-full max-w-4xl mx-auto mt-12 px-4">
@@ -136,6 +138,7 @@ export default function Rekomendasi() {
                     </div>
                 </div>
             </section>
+        </div>
         </div>
     );
 }

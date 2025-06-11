@@ -10,7 +10,7 @@ export default function Navbar() {
   const pathname = usePathname();
 
   // Dummy login state, ganti dengan state/auth context sesuai kebutuhan
-  const isLoggedIn = false;
+  const isLoggedIn = true;
 
   // Menu config
   const menus = [
@@ -39,7 +39,8 @@ export default function Navbar() {
           {/* Desktop Menu */}
           <div className="hidden md:flex space-x-4 items-center">
             {menus.map((menu) => {
-              const isActive = menu.match.some((m) => pathname === m);
+              // Aktif jika pathname diawali salah satu match
+              const isActive = menu.match.some((m) => pathname === m || pathname.startsWith(m + "/"));
               return (
                 <Link
                   key={menu.href}
@@ -101,7 +102,7 @@ export default function Navbar() {
         <div className={`md:hidden mt-4 ${isOpen ? "" : "hidden"}`} id="mobile-menu">
           <div className="flex flex-col space-y-2">
             {menus.map((menu) => {
-              const isActive = menu.match.some((m) => pathname === m);
+              const isActive = menu.match.some((m) => pathname === m || pathname.startsWith(m + "/"));
               return (
                 <Link
                   key={menu.href}
