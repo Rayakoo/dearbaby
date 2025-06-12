@@ -2,12 +2,16 @@ import { signIn } from "next-auth/react";
 
 const GoogleLoginButton = () => {
   return (
-    <button
-      onClick={() => signIn("google")}
-      className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition"
-    >
-      Login dengan Google
-    </button>
+    <div className="w-sm">
+      <button
+        onClick={() => signIn("google")}
+        className="flex px-6 py-1 mt-2 bg-white text-black font-medium text-sm rounded-md hover:bg-gray-200 justify-center items-center w-full transition"
+      >
+        <img src="/google.svg" alt="logo google" className="h-4 m-2"/>
+        Login dengan Google
+      </button>
+    </div>
+    
   );
 };
 

@@ -89,50 +89,70 @@ export default function LoginPage() {
         />
       </div>
 
-      <div className="w-3/5 flex flex-col items-center justify-center p-4 m-4 bg-[#877DD3] min-h-full">
+      <div className="max-w-3/5 flex flex-col items-center justify-center p-4 m-4 bg-secondary min-h-full">
         <div className="flex flex-col w-full text-left mb-8">
-          <h3 className="text-l font-regular text-white">Welcome to</h3>
-          <h1 className="text-xl font-bold text-white">Dearbaby</h1>
+          <h3 className="text-2xl font-regular mx-4 text-white">Welcome to</h3>
+          <h1 className="text-3xl font-bold mx-4 text-white">Dearbaby</h1>
         </div>
 
         <GoogleLoginButton/>
         <FacebookLoginButton/>
 
+        
+        <ul className="flex items-center justify-center p-4">
+          <li className="w-[180px] h-[1px] bg-gray-200"></li>
+          <li><p className="text-xs font-medium text-black px-1"> OR </p></li>
+          <li className="w-[180px] h-[1px] bg-gray-200"></li>
+        </ul>
+
+
         <form className="w-full max-w-sm" onSubmit={handleSubmit}>
           {/* Email Input */}
-          <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
-              Email
-            </label>
-            <input
-              type="email"
-              name="email"
-              placeholder="Email"
-              value={formData.email}
-              onChange={handleChange}
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              required
-            />
+          <div className="flex p-1 bg-gray-100 border rounded-md">
+            <img src="\email.svg" alt="Key Icon" className="w-9 justify-center px-2" />
+            
+            <div className="px-0.25 py-[1px]">
+              <label className="block text-gray-500 text-[10px] font-light" htmlFor="email">
+                Email
+              </label>
+              
+              <input
+                type="email"
+                name="email"
+                placeholder="Email"
+                value={formData.email}
+                onChange={handleChange}
+                className="w-full text-black font-bold text-sm focus:outline-none"
+                required
+              />
+            </div>
+              
           </div>
 
           {/* Password Input */}
-          <div className="mb-6">
-            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
-              Password
-            </label>
-            <input
-              type="password"
-              name="password"
-              placeholder="Masukkan Password"
-              value={formData.password}
-              onChange={handleChange}
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-              required
-            />
+          <div className="flex p-1 mt-3 bg-gray-100 border rounded-md">
+
+            <img src="\password.svg" alt="Key Icon" className="w-9 justify-center px-2" />
+
+            <div className="px-0.25 py-[1px]">  
+              <label className="block text-gray-500 text-[10px] font-light" htmlFor="password">
+                Password
+              </label>
+              <input
+                type="password"
+                name="password"
+                placeholder="Masukkan Password"
+                value={formData.password}
+                onChange={handleChange}
+                className="w-full text-black font-bold text-sm focus:outline-none"
+                required
+              />
+            </div>
+            
           </div>
 
           {/* Remember Me & Forgot Password */}
-          <div className="flex items-center justify-between text-sm text-white mb-4">
+          <div className="flex items-center justify-between text-sm text-black font-light my-2 mb-4">
             <label className="flex items-center gap-2">
               <input
                 type="checkbox"
@@ -149,14 +169,14 @@ export default function LoginPage() {
 
           {/* Sign In Button */}
           <button
-            className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            className="w-full bg-primary hover:bg-gray-200 text-white text-sm font-bold py-2 px-4 focus:outline-none focus:shadow-outline rounded-md"
             type="submit"
           >
-            Sign In
+            Login
           </button>
 
           {/* Register Link */}
-          <p className="text-center text-sm text-white mt-3">
+          <p className="text-center text-sm text-black mt-3">
             Don't have an account?{" "}
             <a href="/auth/register" className="text-white hover:underline">
               Register
