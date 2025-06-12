@@ -62,8 +62,15 @@ export default function LoginPage() {
         } else {
           console.error("Token tidak ditemukan dalam respons API!");
         }
-
-        router.push("/auth/login/welcome");
+    
+        if (data.user && data.user.family_role === "admin") {
+          router.push("/admin/dashboard");
+            console.log("Token disimpan:", data.user.family_role);}
+        else{
+          router.push("/auth/login/welcome");
+              console.log("Token disimpan:", data.user.family_role);
+        }
+        
       } else {
         alert("Login gagal: " + data.message);
       }
