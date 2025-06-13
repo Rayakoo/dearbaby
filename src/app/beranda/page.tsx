@@ -8,7 +8,6 @@ import Footer from "@/components/common/main-footer";
 import Navbar from "@/components/common/main-navbar";
 
 export default function beranda() {
-  const data = "";
   return (
     <div className="bg-[#FAEFFF]  ">
       <Navbar/>

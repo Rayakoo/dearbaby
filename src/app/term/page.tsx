@@ -5,7 +5,6 @@ import Footer from "@/components/common/main-footer";
 import Navbar from "@/components/common/main-navbar";
 
 export default function term() {
-  const data = "";
   return (
     <div className="bg-[#FAEFFF]  ">
       <Navbar/>

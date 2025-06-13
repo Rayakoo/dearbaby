@@ -1,15 +1,26 @@
 import React from "react";
 
-const pregnancyWeek = 28; // dummy data
-const progress = 34; // dummy data (percent)
+interface CardProgresProps {
+  quizzes: { id: string }[];
+  history: { quizId: string; complete: string }[];
+}
 
-const CardProgres = () => {
+const CardProgres: React.FC<CardProgresProps> = ({ quizzes, history }) => {
+  const totalQuiz = quizzes.length;
+  const completedQuizIds = new Set(
+    history.filter((h) => h.complete === "yes").map((h) => h.quizId)
+  );
+  const completedCount = completedQuizIds.size;
+  const progress = totalQuiz > 0 ? Math.round((completedCount / totalQuiz) * 100) : 0;
+
   return (
     <div className="bg-white rounded-2xl shadow-lg w-full max-w-4xl mx-auto px-10 py-8 mt-4">
       {/* Card */}
       <div className="bg-white rounded-2xl shadow flex flex-col px-6 py-4 mb-8">
         <span className="text-sm text-[#7C3AED] font-semibold mb-1">Kemajuan Belajar</span>
-        <span className="text-2xl md:text-3xl font-bold text-[#4B2ED5]">Minggu ke-{pregnancyWeek}</span>
+        <span className="text-2xl md:text-3xl font-bold text-[#4B2ED5]">
+          {completedCount}/{totalQuiz} Quiz Selesai
+        </span>
       </div>
       {/* Progress Bar */}
       <div className="flex flex-col gap-2">
@@ -41,5 +52,7 @@ const CardProgres = () => {
     </div>
   );
 };
+
+
 
 export default CardProgres;

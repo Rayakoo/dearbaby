@@ -13,14 +13,14 @@ export default function SuccessRegister() {
 
         <button
           className="w-full bg-blue-600 text-white p-2 rounded-md hover:bg-blue-700 transition"
-          onClick={() => router.push("/auth/register/success-register/hubungkan")}
+          onClick={() => router.push("/register/success-register/hubungkan")}
         >
           Iya, saya memiliki kode undangan
         </button>
 
         <button
           className="w-full bg-blue-600 text-white p-2 mt-2 rounded-md hover:bg-blue-700 transition"
-          onClick={() => router.push("/auth/register/success-register/peran")}
+          onClick={() => router.push("/register/success-register/peran")}
         >
           Belum
         </button>

@@ -33,7 +33,6 @@ export default function CardRSDetail({
     doctors,
 }: CardRSDetailProps) {
     const stars = "★".repeat(Math.floor(rating)) + "☆".repeat(5 - Math.floor(rating));
-    const ratingColor = rating >= 4 ? "text-green-600" : "text-red-600";
 
     return (
     <div className="bg-white rounded-2xl shadow-md px-6 py-10 max-w-6xl mx-auto space-y-10 w-full">
