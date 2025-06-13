@@ -24,7 +24,7 @@ export async function getCurrentUser(token?: string)
   return data.user;
 
 }
-export async function logout(token: string) {
+export async function logout() {
   await fetch("https://dearbaby.gilanghuda.my.id/api/auth/logout", {
     method: "POST",
     credentials: "include",

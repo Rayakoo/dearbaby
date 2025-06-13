@@ -10,7 +10,7 @@ interface LogoutButtonProps {
 const LogoutButton: React.FC<LogoutButtonProps> = ({ token }) => {
   const handleLogout = async () => {
     try {
-      await logout(token);
+      await logout();
       Cookies.remove("api_token"); // Hapus cookie di client
       window.location.href = "/";
     } catch (error) {
