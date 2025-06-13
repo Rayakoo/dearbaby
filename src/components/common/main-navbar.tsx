@@ -59,7 +59,7 @@ export default function Navbar() {
           <div className="hidden md:flex space-x-4 items-center">
             {menus.map((menu) => {
               // Aktif jika pathname diawali salah satu match
-              const isActive = menu.match.some((m) => pathname === m || pathname.startsWith(m + "/"));
+              const isActive = menu.match.some((m) => pathname && (pathname === m || pathname.startsWith(m + "/")));
               return (
                 <Link
                   key={menu.href}
@@ -106,7 +106,7 @@ export default function Navbar() {
               </Link>
             ) : (
 
-              <Link href="/auth/login">
+              <Link href="/login">
 
                 <button className="ml-3 bg-purple-700 hover:bg-pink-500 text-white font-semibold px-6 py-2 rounded-lg transition">
                   Masuk
@@ -125,7 +125,7 @@ export default function Navbar() {
         <div className={`md:hidden mt-4 ${isOpen ? "" : "hidden"}`} id="mobile-menu">
           <div className="flex flex-col space-y-2">
             {menus.map((menu) => {
-              const isActive = menu.match.some((m) => pathname === m || pathname.startsWith(m + "/"));
+              const isActive = menu.match.some((m) => pathname === m || (pathname && pathname.startsWith(m + "/")));
               return (
                 <Link
                   key={menu.href}
