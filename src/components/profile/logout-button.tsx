@@ -7,7 +7,7 @@ interface LogoutButtonProps {
   token: string;
 }
 
-const LogoutButton: React.FC<LogoutButtonProps> = ({ token }) => {
+const LogoutButton: React.FC<LogoutButtonProps> = ({ }) => {
   const handleLogout = async () => {
     try {
       await logout();
