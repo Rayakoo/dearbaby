@@ -22,13 +22,13 @@ const ProfileCard = ({ user }: { user: UserProfile | null }) => {
       <div className="relative flex flex-col md:flex-row items-center md:items-start px-8 -mt-12">
         <div className="flex flex-col items-center md:items-start w-full md:w-1/2">
           <Image
-            src="/img/profile.jpg"
+            src="/testi1.jpg"
             alt="Profile"
             width={96}
             height={96}
             className="rounded-full border-4 border-white object-cover"
           />
-          <div className="mt-2 text-lg font-semibold">
+          <div className="mt-2 text-lg font-semibold text-purple-700">
             {user?.username ?? "-"}
           </div>
           <div className="text-gray-500 text-sm mb-4">

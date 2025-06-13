@@ -161,7 +161,7 @@ export default function DashboardTable() {
         </button>
       </div>
       <div className="bg-white rounded-xl p-6 shadow-sm">
-        <div className="font-semibold text-lg mb-4">Tabel User</div>
+        <div className="font-semibold text-lg mb-4 text-black">Tabel User</div>
         <div className="overflow-x-auto">
           <table className="min-w-full text-sm">
             <thead>
@@ -184,12 +184,12 @@ export default function DashboardTable() {
               ) : (
                 pagedUsers.map((user) => (
                   <tr key={user.user_id} className="border-b last:border-b-0">
-                    <td className="px-4 py-2">{user.user_id}</td>
-                    <td className="px-4 py-2">{user.username}</td>
-                    <td className="px-4 py-2">{user.email}</td>
-                    <td className="px-4 py-2">{user.umur_kandungan}</td>
-                    <td className="px-4 py-2">{user.family_role}</td>
-                    <td className="px-4 py-2">{user.family_id ?? "-"}</td>
+                    <td className="px-4 py-2 text-gray-700">{user.user_id}</td>
+                    <td className="px-4 py-2 text-gray-700">{user.username}</td>
+                    <td className="px-4 py-2 text-gray-700">{user.email}</td>
+                    <td className="px-4 py-2 text-gray-700">{user.umur_kandungan}</td>
+                    <td className="px-4 py-2 text-gray-700">{user.family_role}</td>
+                    <td className="px-4 py-2 text-gray-700">{user.family_id ?? "-"}</td>
                   </tr>
                 ))
               )}

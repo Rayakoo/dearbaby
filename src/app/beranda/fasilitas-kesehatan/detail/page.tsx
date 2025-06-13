@@ -4,7 +4,7 @@ import CardRSDetail from "@/components/fasilitaskesehatan/card-detailfaskes";
 export default function RSDetailPage() {
     const detailData = {
     name: "RSUD dr. Saiful Anwar",
-    imageSrc: "/img/RSUDSaifulAnwar.jpg",
+    imageSrc: "/rumah-sakit.jpg",
     tags: ["Rumah Sakit Umum", "BPJS", "Booking Online"],
     distance: "5.6 km",
     address: "Jl. Jaksa Agung Suprapto No.2, Klojen, Kec. Klojen, Kota Malang, Jawa Timur 65112",
@@ -32,7 +32,7 @@ export default function RSDetailPage() {
         schedule: "Senin & Kamis, 07:00 - 10:00",
         patientsHandled: 124,
         tags: ["Komunikatif", "Mudah Dihubungi", "Senior", "Ahli"],
-        imageSrc: "/img/dokter1.jpg",
+        imageSrc: "/dokter1.jpg",
     },
     {
         name: "dr. Heru Nasution Sp.OG",
@@ -40,7 +40,7 @@ export default function RSDetailPage() {
         schedule: "Senin & Rabu, 08:00 - 10:00",
         patientsHandled: 98,
         tags: ["Humoris", "Cekatan", "Edukatif"],
-        imageSrc: "/img/dokter2.jpg",
+        imageSrc: "/dokter2.jpg",
     },
     {
         name: "dr. Hasan Sp.OG",
@@ -48,7 +48,7 @@ export default function RSDetailPage() {
         schedule: "Selasa & Jumat, 09:00 - 13:00",
         patientsHandled: 78,
         tags: ["Komunikatif", "Fast Response", "Profesional"],
-        imageSrc: "/img/dokter3.jpg",
+        imageSrc: "/dokter3.jpg",
     },
 ],
 };
