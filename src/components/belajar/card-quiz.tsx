@@ -42,7 +42,7 @@ const CardQuiz: React.FC<CardQuizProps> = ({ quizzes }) => {
       </div>
       <div className="flex justify-between items-center mb-4">
         <button
-          className="px-4 py-2 rounded bg-gray-200 text-gray-700 font-semibold disabled:opacity-50"
+          className="px-4 py-2 rounded bg-purple-200 text-purple-700 font-semibold disabled:opacity-50"
           onClick={() => setIndex((prev) => Math.max(0, prev - 1))}
           disabled={index === 0}
         >
@@ -52,7 +52,7 @@ const CardQuiz: React.FC<CardQuizProps> = ({ quizzes }) => {
           {index + 1} / {quizzes.length}
         </span>
         <button
-          className="px-4 py-2 rounded bg-gray-200 text-gray-700 font-semibold disabled:opacity-50"
+          className="px-4 py-2 rounded bg-purple-200 text-purple-700 font-semibold disabled:opacity-50"
           onClick={() => setIndex((prev) => Math.min(quizzes.length - 1, prev + 1))}
           disabled={index === quizzes.length - 1}
         >
