@@ -44,7 +44,7 @@ export default function DashboardTable() {
           const data = await res.json();
           setCounts({ ayah: data.ayah ?? 0, ibu: data.ibu ?? 0 });
         }
-      } catch (e) {
+      } catch {
         // handle error if needed
       }
     }
@@ -74,7 +74,7 @@ export default function DashboardTable() {
           const data = await res.json();
           setUsers(Array.isArray(data) ? data : []);
         }
-      } catch (e) {
+      } catch {
         // handle error if needed
       }
     }

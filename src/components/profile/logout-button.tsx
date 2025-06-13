@@ -13,7 +13,7 @@ const LogoutButton: React.FC<LogoutButtonProps> = ({ }) => {
       await logout();
       Cookies.remove("api_token"); // Hapus cookie di client
       window.location.href = "/";
-    } catch (error) {
+    } catch {
       alert("Logout gagal!");
     }
   };
