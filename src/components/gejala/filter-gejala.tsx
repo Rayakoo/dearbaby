@@ -88,7 +88,7 @@ export default function FilterGejala({ gejalaList }: FilterGejalaProps) {
         {searched.map((g) => (
           <CardGejala
             key={g.id}
-            imageSrc="/img/gejala-dummy.png"
+            imageSrc="/gejala.jpeg"
             altText={g.title}
             title={g.title}
             description={

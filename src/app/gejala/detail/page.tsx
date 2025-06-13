@@ -23,7 +23,7 @@ const DetailPage: React.FC = () => {
                 {/* Ilustrasi */}
                 <div className="flex justify-center mb-6">
                     <Image
-                        src="/images/sakit-kepala.jpg"
+                        src="/gejala.jpeg"
                         alt="Ilustrasi sakit kepala"
                         width={200}
                         height={200}

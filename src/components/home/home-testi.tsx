@@ -3,37 +3,37 @@ import React, { useEffect, useRef, useState } from "react";
 
 const testimonials = [
   {
-    img: "/img/testi1.jpg",
+    img: "/testi1.jpg",
     name: "Bunda A",
     role: "Ibu Rumah Tangga",
     text: "DearBaby sangat membantu saya memahami perkembangan janin setiap minggu!",
   },
   {
-    img: "/img/testi2.jpg",
+    img: "/testi2.jpg",
     name: "Bunda B",
     role: "Guru",
     text: "Fitur diary-nya bikin saya lebih tenang dan terpantau selama kehamilan.",
   },
   {
-    img: "/img/testi3.jpg",
+    img: "/testi3.jpg",
     name: "Bunda C",
     role: "Karyawan Swasta",
     text: "Artikel dan quiznya informatif, saya jadi lebih siap menghadapi persalinan.",
   },
   {
-    img: "/img/testi1.jpg",
+    img: "/testi4.jpg",
     name: "Bunda D",
     role: "Ibu 2 Anak",
     text: "Reminder dan tips harian dari DearBaby sangat bermanfaat untuk saya.",
   },
   {
-    img: "/img/testi2.jpg",
+    img: "/testi2.jpg",
     name: "Bunda E",
     role: "Wiraswasta",
     text: "Saya suka fitur mood check, jadi lebih aware dengan kondisi diri sendiri.",
   },
   {
-    img: "/img/testi3.jpg",
+    img: "/testi3.jpg",
     name: "Bunda F",
     role: "Dokter",
     text: "DearBaby membantu saya memberikan edukasi ke pasien dengan mudah.",

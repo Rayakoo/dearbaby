@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import LogoutButton from "@/components/profile/logout-button";
 
 const menu = [
   { label: "Dashboard", href: "/admin/dashboard", icon: "🏠" },
@@ -45,12 +46,10 @@ export default function AdminSidebar() {
             <span>Settings</span>
           </div>
         </Link>
-        <Link href="#">
-          <div className="flex items-center gap-2 px-6 py-2 text-gray-500 hover:text-black cursor-pointer">
-            <span>⏻</span>
-            <span>Logout</span>
-          </div>
-        </Link>
+        <div className="flex items-center gap-2 px-6 py-2">
+          <span>⏻</span>
+          <LogoutButton token="" />
+        </div>
       </div>
     </aside>
   );
@@ -108,3 +107,4 @@ export default function AdminSidebar() {
     </>
   );
 }
+

@@ -11,7 +11,7 @@ const BtnFasKes = () => {
       >
         <div className="flex-shrink-0">
           <div className="bg-[#EDE7F6] rounded-lg p-3">
-            <Image src="/img/hospital.png" alt="Faskes" width={64} height={64} />
+            <Image src="/rumah-sakit.jpg" alt="Faskes" width={64} height={64} />
           </div>
         </div>
         <div className="flex-1">

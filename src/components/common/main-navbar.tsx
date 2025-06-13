@@ -95,7 +95,7 @@ export default function Navbar() {
             {isLoggedIn ? (
               <Link href="/profile">
                 <Image
-                  src="/img/profile.jpg"
+                  src="/testi1.jpg"
                   alt="Profile"
                   width={40}
                   height={40}
@@ -150,12 +150,13 @@ export default function Navbar() {
                         : "bg-[#5F22D9] hover:bg-[#7C3AED] text-white"}
                     `}
                   >
-                    Bu Clara
+                       {username}
+
                   </button>
                 </Link>
                 <Link href="/profile" className="flex items-center mt-2">
                   <Image
-                    src="/img/profile.jpg"
+                    src="/testi1.jpg"
                     alt="Profile"
                     width={40}
                     height={40}

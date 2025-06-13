@@ -28,35 +28,35 @@ export default function Rekomendasi() {
 
 
         <CardRS
-        imageSrc="/img/RSUDSaifulAnwar.jpg"
+        imageSrc="/rumah-sakit.jpg"
         altText="RSUD Dr. Saiful Anwar"
         title="RSUD Dr. Saiful Anwar"
         description="Rumah Sakit Umum Daerah kelas A milik pemerintah Provinsi Jawa Timur yang berfungsi sebagai rumah ..."
         rating={4}
         />
         <CardRS
-        imageSrc="/img/RSSoepraoen.jpg"
+        imageSrc="/rumah-sakit2.jpg"
         altText="RS Tk. II dr. Soepraoen"
         title="RS Tk. II dr. Soepraoen"
         description="Rumah Sakit milik TNI AD yang memberikan pelayanan kesehatan kepada prajurit TNI, aparatur ..."
         rating={2}
         />
         <CardRS
-        imageSrc="/img/RSPantiNirmalaMalang.jpg"
+        imageSrc="/rumah-sakit3.jpg"
         altText="RS Panti Nirmala Malang"
         title="RS Panti Nirmala Malang"
         description="Rumah Sakit swasta yang didirikan pada tahun 1920-an awalnya bernama Tiong Hwa Ie Sia. dan ..."
         rating={4}
         />
         <CardRS
-        imageSrc="/img/RSPantiWaluya.jpg"
+        imageSrc="/rumah-sakit.jpg"
         altText="RS Panti Waluya Sawahan"
         title="RS Panti Waluya Sawahan"
         description="Rumah Sakit Umum tipe B yang didirikan pada tahun 1928 oleh Gereja Katolik, dikenal juga dengan ..."
         rating={2}
         />
         <CardRS
-        imageSrc="/img/RSLavalette.jpg"
+        imageSrc="/rumah-sakit2.jpg"
         altText="RS Lavalette"
         title="RS Lavalette"
         description="Salah satu rumah sakit tertua di Malang yang dibangun pada era kolonial, menawarkan layanan unggulan ..."
