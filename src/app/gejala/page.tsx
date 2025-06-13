@@ -1,10 +1,13 @@
 import Footer from "@/components/common/main-footer";
 import Navbar from "@/components/common/main-navbar";
+import { cookies } from "next/headers";
 import { fetchAllGejala } from "@/services/gejala-service";
 import FilterGejala from "@/components/gejala/filter-gejala";
 
 export default async function Gejala() {
-  const gejalaList = await fetchAllGejala();
+  const cookieStore = cookies();
+  const token = (await cookieStore).get("api_token")?.value || "";
+  const gejalaList = await fetchAllGejala(token);
 
   return (
     <div className="bg-[#FAEFFF]">
@@ -21,6 +24,6 @@ export default async function Gejala() {
     </div>
   );
 }
-            
- 
+
+
 

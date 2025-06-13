@@ -1,40 +1,43 @@
 "use client";
 import React, { useState } from "react";
+import {
+  getGejalaServer,
+  createGejalaServer,
+  editGejalaServer,
+  deleteGejalaServer,
+} from "@/actions/gejala-server-action";
+import { GejalaPayload } from "@/services/gejala-service";
 
 type Gejala = {
-  id: string;
-  nama: string;
-  deskripsi: string;
-  level: "Ringan" | "Sedang" | "Serius";
+  id: number;
+  title: string;
+  description: string;
+  level: string;
 };
 
-const LEVELS = ["Ringan", "Sedang", "Serius"] as const;
+type GejalaTableAdminProps = {
+  initialData: Gejala[];
+};
 
-const initialData: Gejala[] = [
-  {
-    id: "01",
-    nama: "Sakit Kepala",
-    deskripsi:
-      "Semakin penting untuk memastikan kesehatan Bunda dan buah hati. Kami dapat membantu yang dapat memenuhi kebutuhan Bunda dengan nyaman.",
-    level: "Ringan",
-  },
-];
+const LEVELS = ["ringan", "sedang", "serius"] as const;
 
-export default function GejalaTableAdmin() {
+export default function GejalaTableAdmin({ initialData }: GejalaTableAdminProps) {
   const [data, setData] = useState<Gejala[]>(initialData);
   const [showForm, setShowForm] = useState(false);
   const [showDelete, setShowDelete] = useState(false);
   const [editIdx, setEditIdx] = useState<number | null>(null);
   const [deleteIdx, setDeleteIdx] = useState<number | null>(null);
 
-  const [form, setForm] = useState<{ nama: string; deskripsi: string; level: Gejala["level"] }>(
-    { nama: "", deskripsi: "", level: "Ringan" }
-  );
+  const [form, setForm] = useState<GejalaPayload>({
+    title: "",
+    description: "",
+    level: "ringan",
+  });
 
   // Open add form
   const openAdd = () => {
     setEditIdx(null);
-    setForm({ nama: "", deskripsi: "", level: "Ringan" });
+    setForm({ title: "", description: "", level: "ringan" });
     setShowForm(true);
   };
 
@@ -42,48 +45,48 @@ export default function GejalaTableAdmin() {
   const openEdit = (idx: number) => {
     setEditIdx(idx);
     setForm({
-      nama: data[idx].nama,
-      deskripsi: data[idx].deskripsi,
+      title: data[idx].title,
+      description: data[idx].description,
       level: data[idx].level,
     });
     setShowForm(true);
   };
 
-  // Save form (add or edit)
-  const handleSubmit = (e: React.FormEvent) => {
+  // Save form (add or edit) via server action
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (editIdx === null) {
-      setData([
-        ...data,
-        {
-          id: (data.length + 1).toString().padStart(2, "0"),
-          nama: form.nama,
-          deskripsi: form.deskripsi,
-          level: form.level,
-        },
-      ]);
+      const success = await createGejalaServer(form);
+      if (success) {
+        const gejala = await getGejalaServer();
+        setData(gejala);
+      }
     } else {
-      setData(
-        data.map((g, idx) =>
-          idx === editIdx
-            ? { ...g, nama: form.nama, deskripsi: form.deskripsi, level: form.level }
-            : g
-        )
-      );
+      const id = data[editIdx].id;
+      const success = await editGejalaServer(id, form);
+      if (success) {
+        const gejala = await getGejalaServer();
+        setData(gejala);
+      }
     }
     setShowForm(false);
   };
 
   // Open delete dialog
-  const openDelete = (idx: number) => {
+  const openDeleteDialog = (idx: number) => {
     setDeleteIdx(idx);
     setShowDelete(true);
   };
 
-  // Confirm delete
-  const handleDelete = () => {
+  // Confirm delete via server action
+  const handleDelete = async () => {
     if (deleteIdx !== null) {
-      setData(data.filter((_, idx) => idx !== deleteIdx));
+      const id = data[deleteIdx].id;
+      const success = await deleteGejalaServer(id);
+      if (success) {
+        const gejala = await getGejalaServer();
+        setData(gejala);
+      }
       setShowDelete(false);
       setDeleteIdx(null);
     }
@@ -97,7 +100,7 @@ export default function GejalaTableAdmin() {
           className="flex items-center gap-2 bg-white rounded-xl px-8 py-4 shadow text-lg font-medium text-gray-700 hover:bg-[#F5F3FF] transition"
           onClick={openAdd}
         >
-          Tambah Data
+          Tambah Gejala
           <span className="text-2xl text-purple-700">+</span>
         </button>
       </div>
@@ -119,9 +122,9 @@ export default function GejalaTableAdmin() {
               {data.map((g, idx) => (
                 <tr key={g.id} className="border-b last:border-b-0">
                   <td className="px-4 py-2 align-top text-black">{g.id}</td>
-                  <td className="px-4 py-2 align-top  text-black">{g.nama}</td>
-                  <td className="px-4 py-2 align-top  text-black">{g.deskripsi}</td>
-                  <td className="px-4 py-2 align-top text-black" >{g.level}</td>
+                  <td className="px-4 py-2 align-top text-black">{g.title}</td>
+                  <td className="px-4 py-2 align-top text-black">{g.description}</td>
+                  <td className="px-4 py-2 align-top text-black">{g.level}</td>
                   <td className="px-4 py-2 align-top text-center flex gap-2 justify-center">
                     {/* Edit */}
                     <button
@@ -137,7 +140,7 @@ export default function GejalaTableAdmin() {
                     {/* Delete */}
                     <button
                       className="p-2 hover:bg-gray-100 rounded"
-                      onClick={() => openDelete(idx)}
+                      onClick={() => openDeleteDialog(idx)}
                       title="Delete"
                     >
                       <svg width="22" height="22" fill="none" viewBox="0 0 24 24">
@@ -176,8 +179,8 @@ export default function GejalaTableAdmin() {
               <input
                 type="text"
                 className="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-purple-300 text-black"
-                value={form.nama}
-                onChange={e => setForm({ ...form, nama: e.target.value })}
+                value={form.title}
+                onChange={e => setForm({ ...form, title: e.target.value })}
                 required
               />
             </div>
@@ -185,8 +188,8 @@ export default function GejalaTableAdmin() {
               <label className="block mb-1 font-medium text-gray-700">Deskripsi</label>
               <textarea
                 className="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-purple-300 text-black"
-                value={form.deskripsi}
-                onChange={e => setForm({ ...form, deskripsi: e.target.value })}
+                value={form.description}
+                onChange={e => setForm({ ...form, description: e.target.value })}
                 rows={3}
                 required
               />
@@ -200,7 +203,7 @@ export default function GejalaTableAdmin() {
                 required
               >
                 {LEVELS.map(lvl => (
-                  <option key={lvl} value={lvl}>{lvl}</option>
+                  <option key={lvl} value={lvl}>{lvl.charAt(0).toUpperCase() + lvl.slice(1)}</option>
                 ))}
               </select>
             </div>
@@ -250,3 +253,5 @@ export default function GejalaTableAdmin() {
     </div>
   );
 }
+  
+
