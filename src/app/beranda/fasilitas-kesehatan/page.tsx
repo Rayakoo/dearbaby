@@ -1,6 +1,7 @@
 import Footer from "@/components/common/main-footer";
 import Navbar from "@/components/common/main-navbar";
 import CardRS from "@/components/fasilitaskesehatan/card-fasilitas";
+import Link from "next/link";
 
 export default function Rekomendasi() {
     return (
@@ -25,14 +26,16 @@ export default function Rekomendasi() {
         </div>
         </div>
         <div className="flex flex-col gap-6">
-
+            
+        <Link href="/beranda/fasilitas-kesehatan/detail">
         <CardRS
-        imageSrc="/img/RSUDSaifulAnwar.jpg"
-        altText="RSUD Dr. Saiful Anwar"
-        title="RSUD Dr. Saiful Anwar"
-        description="Rumah Sakit Umum Daerah kelas A milik pemerintah Provinsi Jawa Timur yang berfungsi sebagai rumah ..."
-        rating={4}
+            imageSrc="/img/RSUDSaifulAnwar.jpg"
+            altText="RSUD Dr. Saiful Anwar"
+            title="RSUD Dr. Saiful Anwar"
+            description="Rumah Sakit Umum Daerah kelas A milik pemerintah Provinsi Jawa Timur yang berfungsi sebagai rumah ..."
+            rating={4}
         />
+        </Link>
         <CardRS
         imageSrc="/img/RSSoepraoen.jpg"
         altText="RS Tk. II dr. Soepraoen"

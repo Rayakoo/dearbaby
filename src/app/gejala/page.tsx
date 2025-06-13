@@ -1,6 +1,7 @@
 import Footer from "@/components/common/main-footer";
 import Navbar from "@/components/common/main-navbar";
 import CardGejala from "@/components/gejala/card-gejala";
+import Link from "next/link";
 
 export default function Gejala() {
   return (
@@ -34,12 +35,14 @@ export default function Gejala() {
         {/* Gejala List */}
         <section className="w-full max-w-4xl mx-auto px-4">
           <div className="flex flex-col gap-6">
-            <CardGejala
-              imageSrc="/img/symptom-headache.jpg"
-              altText="Sakit Kepala"
-              title="Sakit Kepala"
-              description="Semakin penting untuk memastikan kesehatan Bunda dan buah hati. Kami dapat membantu yang dapat memenuhi kebutuhan Bunda dengan nyaman."
-            />
+            <Link href="/gejala/detail">
+              <CardGejala
+                imageSrc="/img/symptom-headache.jpg"
+                altText="Sakit Kepala"
+                title="Sakit Kepala"
+                description="Semakin penting untuk memastikan kesehatan Bunda dan buah hati. Kami dapat membantu yang dapat memenuhi kebutuhan Bunda dengan nyaman."
+              />
+            </Link>
             <CardGejala
               imageSrc="/img/symptom-cramp.jpg"
               altText="Kram Perut"
