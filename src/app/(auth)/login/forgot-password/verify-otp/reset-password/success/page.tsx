@@ -17,7 +17,7 @@ export default function SuccessPage() {
         
         <button
           className="w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-700 transition"
-          onClick={() => window.location.href = "/auth/login"}
+          onClick={() => window.location.href = "/login"}
         >
           Back to Login
         </button>

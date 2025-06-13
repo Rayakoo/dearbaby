@@ -32,7 +32,7 @@ export default function VerifyOtpPage() {
 
         <button
           className="w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-700 transition"
-          onClick={() => window.location.href = "/auth/login/forgot-password/verify-otp/reset-password"}
+          onClick={() => window.location.href = "/login/forgot-password/verify-otp/reset-password"}
         >
           Verify OTP
         </button>
