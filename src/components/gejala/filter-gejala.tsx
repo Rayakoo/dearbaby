@@ -15,8 +15,17 @@ const kategoriDesc: Record<string, string> = {
   serius: "Segera konsultasikan ke dokter",
 };
 
+interface Gejala {
+  id: number;
+  title: string;
+  description: string;
+  level: string;
+  created_at?: string;
+  updated_at?: string;
+}
+
 interface FilterGejalaProps {
-  gejalaList: any[];
+  gejalaList: Gejala[];
 }
 
 export default function FilterGejala({ gejalaList }: FilterGejalaProps) {
