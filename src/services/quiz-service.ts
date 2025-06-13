@@ -1,5 +1,15 @@
 "use server";
 
+type QuizPayload = {
+  title: string;
+  description: string;
+  questions: {
+    question: string;
+    options: string[];
+    correctAnswer: string;
+  }[];
+};
+
 export async function fetchQuizzes(token: string) {
   const res = await fetch("https://dearbaby.gilanghuda.my.id/api/quizzes", {
     method: "GET",
@@ -20,7 +30,7 @@ export async function fetchQuizzes(token: string) {
     : [];
 }
 
-export async function createQuiz(token: string, payload: any) {
+export async function createQuiz(token: string, payload: QuizPayload) {
   const res = await fetch("https://dearbaby.gilanghuda.my.id/api/quizzes/create", {
     method: "POST",
     headers: {
