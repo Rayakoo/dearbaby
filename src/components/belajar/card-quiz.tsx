@@ -2,13 +2,19 @@
 import Link from "next/link";
 import React, { useState } from "react";
 
-interface CardQuizProps {
-  quizzes: {
+interface Quiz {
+  id: string;
+  title: string;
+  description: string;
+  questions: {
     id: string;
-    title: string;
-    description: string;
-    questions: any[];
+    question: string;
+    options: string[];
   }[];
+}
+
+interface CardQuizProps {
+  quizzes: Quiz[];
 }
 
 const CardQuiz: React.FC<CardQuizProps> = ({ quizzes }) => {

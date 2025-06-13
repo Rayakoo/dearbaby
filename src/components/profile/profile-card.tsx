@@ -3,7 +3,15 @@ import Image from "next/image";
 import React from "react";
 import CardUmur from "../beranda/card-umur";
 
-const ProfileCard = ({ user }: { user: any }) => {
+interface UserProfile {
+  username: string;
+  email: string;
+  umur_kandungan: string;
+  family_role: string;
+  family_id: string | null;
+}
+
+const ProfileCard = ({ user }: { user: UserProfile | null }) => {
   if (!user) return <div>Loading...</div>;
 
   return (
