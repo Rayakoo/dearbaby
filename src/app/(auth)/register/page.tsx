@@ -41,7 +41,7 @@ export default function RegisterPage() {
       const data = await response.json();
       if (response.ok) {
         alert("Registrasi berhasil!");
-        router.push("/auth/register/success-register"); // Redirect jika berhasil
+        router.push("/register/success-register"); // Redirect jika berhasil
       } else {
         alert("Error: " + data.message);
       }

@@ -67,7 +67,7 @@ export default function LoginPage() {
           router.push("/admin/dashboard");
             console.log("Token disimpan:", data.user.family_role);}
         else{
-          router.push("/auth/login/welcome");
+          router.push("/login/welcome");
               console.log("Token disimpan:", data.user.family_role);
         }
         
@@ -149,7 +149,7 @@ export default function LoginPage() {
               />
               Remember Me
             </label>
-            <a href="/auth/login/forgot-password" className="text-white hover:underline">
+            <a href="/login/forgot-password" className="text-white hover:underline">
               Forgot Password?
             </a>
           </div>

@@ -25,7 +25,7 @@ export default function InfoPage() {
       {/* Tombol Lanjutkan */}
       <button
         className="px-6 py-3 bg-green-500 text-white rounded-md hover:bg-green-700 transition"
-        onClick={() => router.push("/auth/register/success-register/peran/bagikan-kode")}
+        onClick={() => router.push("/register/success-register/peran/bagikan-kode")}
       >
         Lanjutkan
       </button>

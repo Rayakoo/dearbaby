@@ -8,7 +8,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
   const token = (await cookieStore).get("api_token")?.value;
 
   if (!token) {
-    redirect("/auth/login");
+    redirect("/login");
   }
 
   // Fetch current user with the token

@@ -33,7 +33,7 @@ export default function InfoPage() {
       {/* Tombol Melanjutkan */}
       <button
         className="px-6 py-3 bg-green-500 text-white rounded-md hover:bg-green-700 transition"
-        onClick={() => router.push("/auth/login")}
+        onClick={() => router.push("/login")}
       >
         Selesai
       </button>
