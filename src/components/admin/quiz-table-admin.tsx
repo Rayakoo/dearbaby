@@ -1,5 +1,5 @@
 "use client";
-import { createQuiz, fetchQuizzes } from "@/services/quiz-admin";
+import { createQuiz, fetchQuizzes } from "@/services/quiz-service";
 import React, { useEffect, useState } from "react";
 
 type Quiz = {
