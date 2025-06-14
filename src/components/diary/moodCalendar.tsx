@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import { fetchDiaries } from "@/utils/apiClient";
 
 const emotionsMap: Record<number, string> = {
   1: "/emoticon/sangat_senang_1.png",
@@ -12,102 +13,138 @@ const emotionsMap: Record<number, string> = {
   6: "/emoticon/marah_1.png",
 };
 
-const getCalendar = (year: number, month: number) => {
-  const firstDay = new Date(year, month, 1).getDay();
-  const lastDate = new Date(year, month + 1, 0).getDate();
-  const prevMonthLastDate = new Date(year, month, 0).getDate();
-  
-  let days = [];
+type DiaryEntry = { Tanggal: string; MoodCheck: number; Pesan: string; id: number };
 
-  // Tambahkan tanggal dari bulan sebelumnya
-  for (let i = firstDay - 1; i >= 0; i--) {
-    days.push({ date: prevMonthLastDate - i, currentMonth: false });
-  }
+export default function MoodCalendar({ token }: { token: string }) {
+  const [diaryData, setDiaryData] = useState<DiaryEntry[]>([]);
+  const [averageMood, setAverageMood] = useState<number>(3);
+  const [currentDate] = useState(new Date());
+  const year = currentDate.getFullYear();
+  const month = currentDate.getMonth();
 
-  // Tambahkan tanggal bulan ini
-  for (let i = 1; i <= lastDate; i++) {
-    days.push({ date: i, currentMonth: true });
-  }
+  // Generate calendar days
+  const getDaysInMonth = (year: number, month: number) => {
+    const date = new Date(year, month, 1);
+    const days = [];
+    
+    while (date.getMonth() === month) {
+      days.push(new Date(date));
+      date.setDate(date.getDate() + 1);
+    }
+    
+    return days;
+  };
 
-  // Tambahkan tanggal dari bulan berikutnya untuk memenuhi grid 7x5
-  while (days.length < 35) {
-    days.push({ date: days.length - lastDate - firstDay + 1, currentMonth: false });
-  }
+  const getCalendarDays = () => {
+    const daysInMonth = getDaysInMonth(year, month);
+    const firstDayOfMonth = new Date(year, month, 1).getDay();
+    const lastDayOfPrevMonth = new Date(year, month, 0).getDate();
+    
+    // Add days from previous month
+    const calendarDays = [];
+    for (let i = firstDayOfMonth; i > 0; i--) {
+      calendarDays.push({
+        date: lastDayOfPrevMonth - i + 1,
+        currentMonth: false
+      });
+    }
+    
+    // Add days from current month
+    daysInMonth.forEach(day => {
+      calendarDays.push({
+        date: day.getDate(),
+        currentMonth: true
+      });
+    });
+    
+    // Add days from next month to complete the grid
+    const daysToAdd = 35 - calendarDays.length;
+    for (let i = 1; i <= daysToAdd; i++) {
+      calendarDays.push({
+        date: i,
+        currentMonth: false
+      });
+    }
+    
+    return calendarDays;
+  };
 
-  return days;
-};
-
-export default function MoodCalendar() {
-  const [year, setYear] = useState(new Date().getFullYear());
-  const [month, setMonth] = useState(new Date().getMonth());
-  const [diaryData, setDiaryData] = useState<{ Tanggal: string; MoodCheck: number; Pesan: string }[]>([]);
-  const [averageMood, setAverageMood] = useState<number>(0);
+  const calendarDays = getCalendarDays();
 
   useEffect(() => {
     const fetchDiary = async () => {
-      const response = await fetch("/api/saveDiary");
-      const data = await response.json();
-      setDiaryData(data);
+      console.log("Memanggil fetchDiaries...");
+      const rawData = await fetchDiaries(token);
+      const data: DiaryEntry[] = rawData.map((entry: any, idx: number) => ({
+        Tanggal: entry.Tanggal,
+        MoodCheck: entry.MoodCheck,
+        Pesan: entry.Pesan,
+        id: entry.id !== undefined ? entry.id : idx,
+      }));
 
-      // Hitung rata-rata mood untuk bulan ini
-            if (data.length > 0) {
-            // Hitung frekuensi kemunculan setiap MoodCheck
-            const moodFrequency: { [key: number]: number } = {};
-            
-            data.forEach((entry: { MoodCheck: string | number; }) => {
-                moodFrequency[Number(entry.MoodCheck)] = (moodFrequency[Number(entry.MoodCheck)] || 0) + 1;
-            });
+      console.log("Data diary yang diterima:", JSON.stringify(data, null, 2));
+      if (data.length > 0) {
+        const latestEntries: { [key: string]: DiaryEntry } = {};
 
-            // Temukan modus (nilai dengan frekuensi tertinggi)
-            const mostFrequentMood = Object.keys(moodFrequency)
-                .reduce((a, b) => (moodFrequency[Number(a)] > moodFrequency[Number(b)] ? a : b), Object.keys(moodFrequency)[0]);
+        data.forEach((entry) => {
+          const dateKey = entry.Tanggal;
+          if (!latestEntries[dateKey] || entry.id > latestEntries[dateKey].id) {
+            latestEntries[dateKey] = entry;
+          }
+        });
 
-            // Set state dengan modus
-            setAverageMood(Number(mostFrequentMood));
-            }
+        console.log("Data terbaru setelah filtering berdasarkan ID terbesar:", JSON.stringify(Object.values(latestEntries), null, 2));
+        setDiaryData(Object.values(latestEntries));
+
+        const latestMoodEntry = Object.values(latestEntries)
+          .sort((a, b) => b.id - a.id)[0];
+
+        if (latestMoodEntry) {
+          setAverageMood(Number(latestMoodEntry.MoodCheck));
+          console.log("Mood dengan ID terbesar yang dipilih sebagai averageMood:", latestMoodEntry.MoodCheck);
+        }
+      }
     };
-    fetchDiary();
-  }, []);
 
-  const calendarDays = getCalendar(year, month);
+    fetchDiary();
+  }, [token]);
 
   return (
-    <div className="flex flex-col items-center justify-center p-7 bg-transparent">
+    <div className="flex flex-col items-center justify-center p-5 w-full">
       {/* Header bulan dan tahun */}
-      <div className=" flex justify-between w-full max-w-lg text-center bg-gray-100 shadow-lg rounded-2xl p-4 mb-4">
+      <div className="flex justify-between w-full max-w-3xl text-center bg-gray-100 shadow-lg rounded-2xl p-4 mb-4">
         <div>
-          <h5 className="font-normal text-purple-400"> Kalender Mood Bunda</h5>
-          <h1 className="text-3xl font-bold text-purple-600">{new Date(year, month).toLocaleString("id-ID", { month: "long", year: "numeric" })}</h1>
+          <h5 className="font-normal text-xl text-[#877DD3]">Kalender Mood Bunda</h5>
+          <h1 className="text-3xl font-bold text-[#5324D7]">
+            {new Date(year, month).toLocaleString("id-ID", { month: "long", year: "numeric" })}
+          </h1>
         </div>
         <div>
           <Image 
-                  src={emotionsMap[averageMood]}
-                  alt="Mood"
-                  width={60}
-                  height={60}
-                  className="p-1"
-                />
+            src={emotionsMap[averageMood] || "/emoticon/senang_1.png"}
+            alt="Mood"
+            width={60}
+            height={60}
+            className="p-1"
+          />
         </div>
       </div>
 
       {/* Grid kalender */}
-      <div className="grid grid-cols-7 max-w-lg shadow-lg">
+      <div className="grid grid-cols-7  w-max max-w-3xl shadow-xl rounded-2xl">
         {calendarDays.map((day, index) => {
-          // Format tanggal YYYY-MM-DD
           const fullDate = `${year}-${String(month + 1).padStart(2, "0")}-${String(day.date).padStart(2, "0")}`;
-          
-          // Cari mood berdasarkan tanggal
           const diaryEntry = diaryData.find((entry) => entry.Tanggal === fullDate);
 
           return (
-            <div key={index}
-                className={`p-2 h-14 w-16 ${day.currentMonth ? "bg-gray-100" : "bg-gray-200"} flex relative items-center justify-center`}>
-              {/* Tanggal di pojok kiri atas jika bukan bulan yang ditampilkan */}
+            <div 
+              key={index}
+              className={`p-2 h-25 w-25 border-[0.25px] ${day.currentMonth ? "bg-gray-100" : "bg-gray-200"} flex relative items-center justify-center`}
+            >
               <span className={`${day.currentMonth ? "absolute left-1 text-xs text-black" : "text-xs text-gray-600 absolute top-1 left-1"}`}>
                 {day.date}
               </span>
 
-              {/* Menampilkan gambar jika ada entri mood */}
               {diaryEntry && (
                 <Image 
                   src={emotionsMap[diaryEntry.MoodCheck]}
@@ -121,11 +158,6 @@ export default function MoodCalendar() {
           );
         })}
       </div>
-
-
-
     </div>
   );
 }
-
-

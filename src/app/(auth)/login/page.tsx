@@ -67,7 +67,7 @@ export default function LoginPage() {
           router.push("/admin/dashboard");
             console.log("Token disimpan:", data.user.family_role);}
         else{
-          router.push("/login/welcome");
+          router.push("/");
               console.log("Token disimpan:", data.user.family_role);
         }
         
