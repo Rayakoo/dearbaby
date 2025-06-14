@@ -23,7 +23,6 @@ type LoginResponse = {
 };
 
 export default function LoginPage() {
-  const [message, setMessage] = useState("");
   const router = useRouter();
   const [formData, setFormData] = useState<FormData>({
     email: "",
@@ -49,9 +48,6 @@ export default function LoginPage() {
       const data: LoginResponse = await response.json();
 
       if (response.ok) {
-        setMessage("Login Berhasil!");
-        setTimeout(() => setMessage(""), 3000);
-
         if (rememberMe) {
           Cookies.set("token", data.token, { expires: 7 });
         } else {

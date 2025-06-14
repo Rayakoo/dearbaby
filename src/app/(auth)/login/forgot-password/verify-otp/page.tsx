@@ -1,5 +1,5 @@
 "use client";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 
 export default function VerifyOtpPage() {
   const [otp, setOtp] = useState(["", "", "", "", "", ""]);
@@ -8,10 +8,10 @@ export default function VerifyOtpPage() {
   const handleChange = (index: number, value: string) => {
     if (/^\d*$/.test(value)) {
       const newOtp = [...otp];
-      
-      // Handle paste or multiple digits input
+
+      // Handle multiple digits input
       if (value.length > 1) {
-        const digits = value.split("").slice(0, 6 - index); // Limit to remaining boxes
+        const digits = value.split("").slice(0, 6 - index);
         digits.forEach((digit, i) => {
           if (index + i < newOtp.length) {
             newOtp[index + i] = digit;
@@ -23,7 +23,7 @@ export default function VerifyOtpPage() {
 
       setOtp(newOtp);
 
-      // Auto focus to next input if a digit was entered
+      // Auto focus to next input
       if (value.length > 0 && index < otp.length - 1) {
         inputRefs.current[index + 1]?.focus();
       }
@@ -31,7 +31,6 @@ export default function VerifyOtpPage() {
   };
 
   const handleKeyDown = (index: number, e: React.KeyboardEvent<HTMLInputElement>) => {
-    // Handle backspace to move to previous input
     if (e.key === "Backspace" && !otp[index] && index > 0) {
       inputRefs.current[index - 1]?.focus();
     }
@@ -41,7 +40,7 @@ export default function VerifyOtpPage() {
     e.preventDefault();
     const pasteData = e.clipboardData.getData('text/plain');
     if (/^\d+$/.test(pasteData)) {
-      const digits = pasteData.split("").slice(0, 6); // Limit to OTP length
+      const digits = pasteData.split("").slice(0, 6);
       const newOtp = [...otp];
       digits.forEach((digit, i) => {
         if (i < newOtp.length) {
@@ -49,8 +48,8 @@ export default function VerifyOtpPage() {
         }
       });
       setOtp(newOtp);
-      
-      // Focus the last filled input
+
+      // Auto focus last filled input
       const lastFilledIndex = Math.min(digits.length - 1, otp.length - 1);
       inputRefs.current[lastFilledIndex]?.focus();
     }
@@ -71,7 +70,7 @@ export default function VerifyOtpPage() {
               onChange={(e) => handleChange(index, e.target.value)}
               onKeyDown={(e) => handleKeyDown(index, e)}
               onPaste={handlePaste}
-              maxLength={6} // Allow paste of full OTP
+              maxLength={1} // Each box should only accept one digit
               className="w-10 h-10 text-center border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               autoFocus={index === 0}
             />
