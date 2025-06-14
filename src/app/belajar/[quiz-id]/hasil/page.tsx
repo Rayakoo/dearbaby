@@ -11,10 +11,17 @@ interface QuizHistory {
   complete: string;
 }
 
-export default async function QuizHasilPage({ params }: { params: { "quiz-id": string } }) {
+export default async function QuizHasilPage({ 
+  params 
+}: { 
+  params: Promise<{ "quiz-id": string }>
+}) {
+  // Tunggu params diselesaikan terlebih dahulu
+  const resolvedParams = await params;
+  const quizId = resolvedParams["quiz-id"];
+  
   const cookieStore = cookies();
   const token = (await cookieStore).get("api_token")?.value || "";
-  const quizId = params["quiz-id"];
   const history: QuizHistory[] = await getQuizHistory(token);
 
   // Ambil history terakhir untuk quizId ini
@@ -22,9 +29,7 @@ export default async function QuizHasilPage({ params }: { params: { "quiz-id": s
 
   return (
     <div className="bg-[#FAEFFF] min-h-screen">
-      <CardHasil
-        result={quizResult}
-      />
+      <CardHasil result={quizResult} />
     </div>
   );
 }
