@@ -73,7 +73,6 @@ export default function MoodCalendar({ token }: { token: string }) {
 
   useEffect(() => {
     const fetchDiary = async () => {
-      console.log("Memanggil fetchDiaries...");
       const rawData = await fetchDiaries(token);
       const data: DiaryEntry[] = rawData.map((entry: any, idx: number) => ({
         Tanggal: entry.Tanggal,
@@ -82,7 +81,6 @@ export default function MoodCalendar({ token }: { token: string }) {
         id: entry.id !== undefined ? entry.id : idx,
       }));
 
-      console.log("Data diary yang diterima:", JSON.stringify(data, null, 2));
       if (data.length > 0) {
         const latestEntries: { [key: string]: DiaryEntry } = {};
 
@@ -93,7 +91,6 @@ export default function MoodCalendar({ token }: { token: string }) {
           }
         });
 
-        console.log("Data terbaru setelah filtering berdasarkan ID terbesar:", JSON.stringify(Object.values(latestEntries), null, 2));
         setDiaryData(Object.values(latestEntries));
 
         const latestMoodEntry = Object.values(latestEntries)
@@ -101,7 +98,6 @@ export default function MoodCalendar({ token }: { token: string }) {
 
         if (latestMoodEntry) {
           setAverageMood(Number(latestMoodEntry.MoodCheck));
-          console.log("Mood dengan ID terbesar yang dipilih sebagai averageMood:", latestMoodEntry.MoodCheck);
         }
       }
     };

@@ -8,31 +8,27 @@ export default function InfoPage() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-6">
       {/* Gambar utama */}
-      <Image src="/main-image.jpg" alt="Main" width={300} height={300} className="rounded-lg shadow-lg mb-6" />
+      <Image src="/couple.png" alt="Main" width={100} height={200} className="rounded-lg shadow-lg mb-6" />
 
       {/* Teks Header */}
-      <h1 className="text-3xl font-bold text-center mb-4">Selamat Datang di DearBaby!</h1>
+      <h1 className="text-3xl font-bold text-center text-[#5324D7] mb-4">Akun DearBaby Anda berhasil dibuat.</h1>
 
       {/* Subjudul */}
-      <h2 className="text-xl font-semibold text-center mb-2">Bagikan Kebahagiaan Anda</h2>
+      <h2 className="text-xl font-semibold text-center text-gray-300 mb-2">Untuk terhubung dengan akun DearBaby pasangan Anda, kirim invitation berikut kepada pasangan Anda</h2>
 
-      {/* Paragraf Deskripsi */}
-      <p className="text-center text-gray-600 mb-6">
-        DearBaby hadir untuk membantu Anda dalam perjalanan kehamilan. Berbagi pengalaman bersama pasangan dan keluarga.
-      </p>
 
       {/* Tombol Bagikan */}
       <button
-        className="flex items-center px-6 py-3 bg-blue-500 text-white rounded-md hover:bg-blue-700 transition mb-4"
+        className="flex items-center px-6 py-3 bg-transparent font-extrabold text-black rounded-md hover:bg-gray-100 transition mb-4"
         onClick={() => alert("Bagikan ke Sosial Media")}
       >
-        <Image src="/share-icon.png" alt="Bagikan" width={20} height={20} className="mr-2" />
-        Bagikan
+        <Image src="/salin.svg" alt="Bagikan" width={20} height={20} className="mr-2" />
+        76549
       </button>
 
       {/* Tombol Melanjutkan */}
       <button
-        className="px-6 py-3 bg-green-500 text-white rounded-md hover:bg-green-700 transition"
+        className="px-6 py-3 bg-[#5324D7] text-white rounded-md hover:bg-gray-100 transition"
         onClick={() => router.push("/login")}
       >
         Selesai

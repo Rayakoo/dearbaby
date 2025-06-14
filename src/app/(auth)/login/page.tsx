@@ -11,6 +11,7 @@ import Cookies from "js-cookie"; // Install dengan `npm install js-cookie`
 
 
 export default function LoginPage() {
+  const [message, setMessage] = useState("");
 
   
   const router = useRouter();
@@ -36,11 +37,11 @@ export default function LoginPage() {
 
       const data = await response.json();
 
-      // Debugging: Periksa isi data dari API
-      console.log("Data dari API:", data);
-
       if (response.ok) {
-        alert("Login Berhasil!");
+        setMessage("Login Berhasil!");
+
+      // **Hilangkan pesan otomatis setelah 3 detik**
+        setTimeout(() => setMessage(""), 3000);
 
         // Simpan token di cookies jika Remember Me diaktifkan
         if (rememberMe) {
@@ -129,7 +130,7 @@ export default function LoginPage() {
                 placeholder="Email"
                 value={formData.email}
                 onChange={handleChange}
-                className="w-full text-black font-bold text-sm focus:outline-none"
+                className="w-max text-black font-bold text-sm focus:outline-none"
                 required
               />
             </div>
@@ -141,7 +142,7 @@ export default function LoginPage() {
 
             <img src="\password.svg" alt="Key Icon" className="w-9 justify-center px-2" />
 
-            <div className="px-0.25 py-[1px]">  
+            <div className="px-0.25 py-[1px] w-max">  
               <label className="block text-gray-500 text-[10px] font-light" htmlFor="password">
                 Password
               </label>
@@ -151,7 +152,7 @@ export default function LoginPage() {
                 placeholder="Masukkan Password"
                 value={formData.password}
                 onChange={handleChange}
-                className="w-full text-black font-bold text-sm focus:outline-none"
+                className="w-max text-black font-bold text-sm focus:outline-none"
                 required
               />
             </div>
