@@ -5,27 +5,38 @@ import GoogleLoginButton from "@/components/auth/login/google-login";
 import FacebookLoginButton from "@/components/auth/login/facebook-login";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Cookies from "js-cookie";
 
-import Cookies from "js-cookie"; // Install dengan `npm install js-cookie`
+type FormData = {
+  email: string;
+  password: string;
+};
 
-
+type LoginResponse = {
+  token: string;
+  api_token?: string;
+  user?: {
+    username: string;
+    family_role: string;
+  };
+  message?: string;
+};
 
 export default function LoginPage() {
   const [message, setMessage] = useState("");
-
-  
   const router = useRouter();
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     email: "",
     password: "",
   });
   const [rememberMe, setRememberMe] = useState(false);
 
-  const handleChange = (e: { target: { name: any; value: any; }; }) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = async (e: { preventDefault: () => void; }) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     try {
@@ -35,54 +46,39 @@ export default function LoginPage() {
         body: JSON.stringify({ email: formData.email, password: formData.password }),
       });
 
-      const data = await response.json();
+      const data: LoginResponse = await response.json();
 
       if (response.ok) {
         setMessage("Login Berhasil!");
-
-      // **Hilangkan pesan otomatis setelah 3 detik**
         setTimeout(() => setMessage(""), 3000);
 
-        // Simpan token di cookies jika Remember Me diaktifkan
         if (rememberMe) {
-          Cookies.set("token", data.token, { expires: 7 }); // Simpan token 7 hari
+          Cookies.set("token", data.token, { expires: 7 });
         } else {
-          sessionStorage.setItem("token", data.token); // Simpan token sementara
+          sessionStorage.setItem("token", data.token);
         }
 
-        // Periksa apakah API mengirimkan username dengan benar
-        if (data.user && data.user.username) {
-          Cookies.set("username", data.user.username); // Simpan username untuk navbar
-          console.log("Username disimpan:", data.user.username);
-        } else {
-          console.error("Username tidak ditemukan dalam respons API!");
+        if (data.user?.username) {
+          Cookies.set("username", data.user.username);
         }
 
         if (data.api_token) {
-          Cookies.set("api_token", data.api_token, { expires: 7 }); // Simpan token API
-        } else {
-          console.error("Token tidak ditemukan dalam respons API!");
+          Cookies.set("api_token", data.api_token, { expires: 7 });
         }
     
-        if (data.user && data.user.family_role === "admin") {
+        if (data.user?.family_role === "admin") {
           router.push("/admin/dashboard");
-            console.log("Token disimpan:", data.user.family_role);}
-        else{
+        } else {
           router.push("/");
-              console.log("Token disimpan:", data.user.family_role);
         }
-        
       } else {
-        alert("Login gagal: " + data.message);
+        alert("Login gagal: " + (data.message || "Unknown error"));
       }
     } catch (error) {
       console.error("Terjadi kesalahan:", error);
       alert("Gagal login. Coba lagi nanti!");
     }
   };
-
-
-
 
   return (
     <div className="flex flex-row items-center justify-center min-h-screen w-full bg-white">
@@ -105,19 +101,23 @@ export default function LoginPage() {
 
         <GoogleLoginButton/>
         <FacebookLoginButton/>
-
         
         <ul className="flex items-center justify-center p-4">
           <li className="w-[180px] h-[1px] bg-gray-200"></li>
-          <li><p className="text-xs font-medium text-black px-1"> OR </p></li>
+          <li><p className="text-xs font-medium text-black px-1">OR</p></li>
           <li className="w-[180px] h-[1px] bg-gray-200"></li>
         </ul>
-
 
         <form className="w-full max-w-sm" onSubmit={handleSubmit}>
           {/* Email Input */}
           <div className="flex p-1 bg-gray-100 border rounded-md">
-            <img src="\email.svg" alt="Key Icon" className="w-9 justify-center px-2" />
+            <Image 
+              src="/email.svg" 
+              alt="Email Icon" 
+              width={36}
+              height={36}
+              className="w-9 justify-center px-2" 
+            />
             
             <div className="px-0.25 py-[1px]">
               <label className="block text-gray-500 text-[10px] font-light" htmlFor="email">
@@ -134,13 +134,17 @@ export default function LoginPage() {
                 required
               />
             </div>
-              
           </div>
 
           {/* Password Input */}
           <div className="flex p-1 mt-3 bg-gray-100 border rounded-md">
-
-            <img src="\password.svg" alt="Key Icon" className="w-9 justify-center px-2" />
+            <Image 
+              src="/password.svg" 
+              alt="Password Icon" 
+              width={36}
+              height={36}
+              className="w-9 justify-center px-2" 
+            />
 
             <div className="px-0.25 py-[1px] w-max">  
               <label className="block text-gray-500 text-[10px] font-light" htmlFor="password">
@@ -156,7 +160,6 @@ export default function LoginPage() {
                 required
               />
             </div>
-            
           </div>
 
           {/* Remember Me & Forgot Password */}
@@ -185,7 +188,7 @@ export default function LoginPage() {
 
           {/* Register Link */}
           <p className="text-center text-sm text-black mt-3">
-            Don't have an account?{" "}
+            Don&apos;t have an account?{" "}
             <a href="/register" className="text-white hover:underline">
               Register
             </a>

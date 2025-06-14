@@ -4,19 +4,19 @@ import Image from "next/image";
 export default function SuccessPage() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-      <div className="bg-white p-6 rounded-lg shadow-md w-96 text-center">
+      <div className="flex flex-col bg-white p-6 rounded-lg items-center shadow-md w-96 text-center">
+        <h1 className="text-black font-bold text-xl mb-6">Selamat.</h1>
         <Image 
-          src="/success.svg" 
+          src="/welcome.svg" 
           alt="Success"  
           width={100}
           height={100} 
           priority
         />
-        <h2 className="text-xl font-bold mb-4">Password Reset Successful!</h2>
-        <p className="text-gray-600 mb-6">Your password has been updated successfully.</p>
+        <p className="text-black text-md font-medium mb-6">Sandimu berhasil diubah.</p>
         
         <button
-          className="w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-700 transition"
+          className="w-full bg-[#5324D7] text-white p-2 rounded-md hover:bg-gray-200 transition"
           onClick={() => window.location.href = "/login"}
         >
           Back to Login

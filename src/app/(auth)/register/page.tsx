@@ -3,9 +3,17 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image"; 
 
+interface FormData {
+  username: string;
+  email: string;
+  umur_kandungan: string;
+  password: string;
+  confirmPassword: string;
+}
+
 export default function RegisterPage() {
   const router = useRouter();
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     username: "",
     email: "",
     umur_kandungan: "",
@@ -13,21 +21,20 @@ export default function RegisterPage() {
     confirmPassword: "",
   });
 
-  const handleChange = (e: { target: { name: any; value: any; }; }) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = async (e: { preventDefault: () => void; }) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    // Validasi password
     if (formData.password !== formData.confirmPassword) {
       alert("Password tidak cocok!");
       return;
     }
 
     try {
-      // Kirim data ke API
       const response = await fetch("https://dearbaby.gilanghuda.my.id/api/auth/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -41,7 +48,7 @@ export default function RegisterPage() {
 
       const data = await response.json();
       if (response.ok) {
-        router.push("/register/success-register"); // Redirect jika berhasil
+        router.push("/register/success-register");
       } else {
         alert("Error: " + data.message);
       }

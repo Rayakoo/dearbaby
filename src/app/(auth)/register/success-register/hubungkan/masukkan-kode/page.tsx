@@ -8,7 +8,7 @@ export default function VerifyInvitationKode() {
 
   const handleChange = (index: number, value: string) => {
     if (/^\d*$/.test(value)) {
-      let newOtp = [...otp];
+      const newOtp = [...otp];
 
       // Jika lebih dari 1 angka diketik, pindahkan ke kolom berikutnya
       if (value.length > 1) {

@@ -14,6 +14,12 @@ const emotionsMap: Record<number, string> = {
 };
 
 type DiaryEntry = { Tanggal: string; MoodCheck: number; Pesan: string; id: number };
+type RawDiaryEntry = {
+  Tanggal: string;
+  MoodCheck: number | string;
+  Pesan: string;
+  id?: number;
+};
 
 export default function MoodCalendar({ token }: { token: string }) {
   const [diaryData, setDiaryData] = useState<DiaryEntry[]>([]);
@@ -74,9 +80,9 @@ export default function MoodCalendar({ token }: { token: string }) {
   useEffect(() => {
     const fetchDiary = async () => {
       const rawData = await fetchDiaries(token);
-      const data: DiaryEntry[] = rawData.map((entry: any, idx: number) => ({
+      const data: DiaryEntry[] = rawData.map((entry: RawDiaryEntry, idx: number) => ({
         Tanggal: entry.Tanggal,
-        MoodCheck: entry.MoodCheck,
+        MoodCheck: Number(entry.MoodCheck),
         Pesan: entry.Pesan,
         id: entry.id !== undefined ? entry.id : idx,
       }));
@@ -127,7 +133,7 @@ export default function MoodCalendar({ token }: { token: string }) {
       </div>
 
       {/* Grid kalender */}
-      <div className="grid grid-cols-7  w-max max-w-3xl shadow-xl rounded-2xl">
+      <div className="grid grid-cols-7 w-max max-w-3xl shadow-xl rounded-2xl">
         {calendarDays.map((day, index) => {
           const fullDate = `${year}-${String(month + 1).padStart(2, "0")}-${String(day.date).padStart(2, "0")}`;
           const diaryEntry = diaryData.find((entry) => entry.Tanggal === fullDate);

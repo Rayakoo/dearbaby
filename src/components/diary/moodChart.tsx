@@ -11,6 +11,14 @@ type DiaryEntry = {
   Pesan: string;
 };
 
+type RawDiaryEntry = {
+  id?: number;
+  Tanggal: string;
+  MoodCheck: string | number;
+  Pesan: string;
+  // Add other fields if they exist in the API response
+};
+
 const emotionsMap: Record<number, string> = {
   1: "/emoticon/sangat_senang_1.png",
   2: "/emoticon/senang_1.png",
@@ -81,7 +89,7 @@ export default function MoodChart({ token }: { token: string }) {
         const rawData = await fetchDiaries(token);
         
         // Pastikan data memiliki ID
-        const dataWithIds = rawData.map((entry: any, index: number) => ({
+        const dataWithIds = rawData.map((entry: RawDiaryEntry, index: number) => ({
           ...entry,
           id: entry.id || index, // Fallback ke index jika ID tidak ada
           MoodCheck: Number(entry.MoodCheck), // Pastikan MoodCheck berupa number
@@ -125,43 +133,41 @@ export default function MoodChart({ token }: { token: string }) {
             const count = moodFrequency[moodValue];
             const maxBarHeight = 200;
             const scaleFactor = count > 0 ? (count / filteredData.length) * maxBarHeight : 0;
-            const hasData = count > 0;
 
             return (
               <div key={i} className="flex flex-col items-center relative">
-  {/* Bagian putih - dipertahankan seperti kode 2 */}
-  <div 
-    className="w-10 bg-white rounded-t-3xl"
-    style={{ height: `${maxBarHeight - scaleFactor}px` }}
-  ></div>
+                {/* Bagian putih */}
+                <div 
+                  className="w-10 bg-white rounded-t-3xl"
+                  style={{ height: `${maxBarHeight - scaleFactor}px` }}
+                ></div>
 
-  {/* Batang grafik - dipertahankan seperti kode 2 */}
-  <div 
-    className={`w-11 ${moodColors[i]} rounded-b-3xl relative`}
-    style={{ height: `${scaleFactor}px` }}
-  >
-    {/* Emoticon - menggunakan logika kode 1 */}
-    {moodFrequency[moodValue] > 0 ? (
-      <Image 
-        src={emotionsMap[moodValue]} 
-        alt="Mood" 
-        width={100} 
-        height={100} 
-        className="absolute translate-y-[-50%]"
-        style={{ bottom: `${scaleFactor - 40}px` }}
-      />
-    ) : (
-      <Image 
-        src={emotionsMap[moodValue]} 
-        alt="Mood" 
-        width={100} 
-        height={100} 
-        className="absolute bottom-[-10px] opacity-100"
-      />
-    )}
-  </div>
-</div>
-
+                {/* Batang grafik */}
+                <div 
+                  className={`w-11 ${moodColors[i]} rounded-b-3xl relative`}
+                  style={{ height: `${scaleFactor}px` }}
+                >
+                  {/* Emoticon */}
+                  {moodFrequency[moodValue] > 0 ? (
+                    <Image 
+                      src={emotionsMap[moodValue]} 
+                      alt="Mood" 
+                      width={100} 
+                      height={100} 
+                      className="absolute translate-y-[-50%]"
+                      style={{ bottom: `${scaleFactor - 40}px` }}
+                    />
+                  ) : (
+                    <Image 
+                      src={emotionsMap[moodValue]} 
+                      alt="Mood" 
+                      width={100} 
+                      height={100} 
+                      className="absolute bottom-[-10px] opacity-100"
+                    />
+                  )}
+                </div>
+              </div>
             );
           })}
         </div>

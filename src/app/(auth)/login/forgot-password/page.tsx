@@ -18,7 +18,7 @@ export default function ForgotPasswordPage() {
         />
 
         <button
-          className="w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-700 transition"
+          className="w-full bg-[#5324D7] text-white p-2 rounded-md hover:bg-gray-100 transition"
           onClick={() => window.location.href = "/login/forgot-password/verify-otp"}
         >
           Send OTP
